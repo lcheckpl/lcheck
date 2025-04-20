@@ -15,17 +15,18 @@ datasource db {
 }
 
 model User {
-  id            Int          @id @default(autoincrement())
-  email         String       @unique
-  name          String?
+  id            String    @id
+  name          String
+  email         String
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
-  LegitCheck    LegitCheck[]
+  Review        Review[]
 
+  @@unique([email])
   @@map("user")
 }
 
@@ -37,7 +38,7 @@ model Session {
   updatedAt DateTime
   ipAddress String?
   userAgent String?
-  userId    Int
+  userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([token])
@@ -48,7 +49,7 @@ model Account {
   id                    String    @id
   accountId             String
   providerId            String
-  userId                Int
+  userId                String
   user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
@@ -74,10 +75,11 @@ model Verification {
   @@map("verification")
 }
 
-model LegitCheck {
-  id          Int     @id @default(autoincrement())
-  user        User    @relation(fields: [userId], references: [id])
-  userId      Int
-  positive    Boolean
+model Review {
+  id          String   @id @default(uuid())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
+  isPositive  Boolean
   description String
+  createdAt   DateTime @default(now())
 }
