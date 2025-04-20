@@ -13,6 +13,7 @@ export const auth = betterAuth({
 		discord: {
 			clientId: process.env.DISCORD_CLIENT_ID as string,
 			clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+			scope: ["guilds"],
 		},
 	},
 })
