@@ -15,8 +15,8 @@ datasource db {
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
-  email         String    @unique
+  id            Int          @id @default(autoincrement())
+  email         String       @unique
   name          String?
   emailVerified Boolean
   image         String?
@@ -24,6 +24,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  LegitCheck    LegitCheck[]
 
   @@map("user")
 }
@@ -71,4 +72,12 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+model LegitCheck {
+  id          Int     @id @default(autoincrement())
+  user        User    @relation(fields: [userId], references: [id])
+  userId      Int
+  positive    Boolean
+  description String
 }
