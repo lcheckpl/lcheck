@@ -9,7 +9,6 @@ import {
 	DropdownMenuItem,
 	DropdownMenuLabel,
 	DropdownMenuSeparator,
-	DropdownMenuShortcut,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -18,21 +17,30 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar"
+import { Skeleton } from "../ui/skeleton"
+import { fetchGuilds, UserGuilds } from "@/actions/fetchGuilds"
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 
-export function TeamSwitcher({
-	teams,
-}: {
-	teams: {
-		name: string
-		logo: React.ElementType
-		plan: string
-	}[]
-}) {
+export function TeamSwitcher() {
+	const [teams, setTeams] = React.useState<UserGuilds[]>([])
 	const { isMobile } = useSidebar()
 	const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
+	React.useEffect(() => {
+		async function asyncTeamsSet() {
+			const fetchedGuilds = await fetchGuilds()
+			setTeams(fetchedGuilds)
+			setActiveTeam(fetchedGuilds[0])
+		}
+		asyncTeamsSet()
+	}, [])
+
 	if (!activeTeam) {
-		return null
+		return (
+			<SidebarMenuButton size="lg" disabled>
+				<Skeleton className="h-full w-full" />
+			</SidebarMenuButton>
+		)
 	}
 
 	return (
@@ -44,15 +52,20 @@ export function TeamSwitcher({
 							size="lg"
 							className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						>
-							<div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-								<activeTeam.logo className="size-4" />
-							</div>
+							<Avatar>
+								<AvatarImage
+									src={`https://cdn.discordapp.com/icons/${activeTeam.id}/${activeTeam.icon}.png`}
+									alt="Avatar"
+								/>
+								<AvatarFallback>CN</AvatarFallback>
+							</Avatar>
+
 							<div className="grid flex-1 text-left text-sm leading-tight">
 								<span className="truncate font-medium">
 									{activeTeam.name}
 								</span>
 								<span className="truncate text-xs">
-									{activeTeam.plan}
+									{activeTeam.id}
 								</span>
 							</div>
 							<ChevronsUpDown className="ml-auto" />
@@ -67,19 +80,20 @@ export function TeamSwitcher({
 						<DropdownMenuLabel className="text-muted-foreground text-xs">
 							Teams
 						</DropdownMenuLabel>
-						{teams.map((team, index) => (
+						{teams.map((team) => (
 							<DropdownMenuItem
 								key={team.name}
 								onClick={() => setActiveTeam(team)}
 								className="gap-2 p-2"
 							>
-								<div className="flex size-6 items-center justify-center rounded-md border">
-									<team.logo className="size-3.5 shrink-0" />
-								</div>
+								<Avatar className="size-6">
+									<AvatarImage
+										src={`https://cdn.discordapp.com/icons/${team.id}/${team.icon}.png`}
+										alt="Avatar"
+									/>
+									<AvatarFallback>CN</AvatarFallback>
+								</Avatar>
 								{team.name}
-								<DropdownMenuShortcut>
-									⌘{index + 1}
-								</DropdownMenuShortcut>
 							</DropdownMenuItem>
 						))}
 						<DropdownMenuSeparator />
