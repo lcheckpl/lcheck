@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma"
 import { headers } from "next/headers"
 import { calculate } from "discord-permission"
 
-export interface UserGuilds {
+export interface UserGuild {
 	id: string
 	name: string
 	icon: string
@@ -48,7 +48,7 @@ export async function fetchGuilds() {
 		},
 	] = await result.json()
 
-	const mappedGuilds: UserGuilds[] = json
+	const mappedGuilds: UserGuild[] = json
 		.filter(
 			(item) =>
 				calculate("ADMINISTRATOR", item.permissions) || item.owner,

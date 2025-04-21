@@ -18,12 +18,12 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { useTeams } from "@/contexts/TeamsProvider"
+import { useActiveTeam, useTeams } from "@/contexts/TeamsProvider"
 
 export function TeamSwitcher() {
 	const teams = useTeams()
 	const { isMobile } = useSidebar()
-	const [activeTeam, setActiveTeam] = React.useState(teams[0])
+	const { activeTeam, setActiveTeam } = useActiveTeam()
 
 	if (!activeTeam) {
 		return null
