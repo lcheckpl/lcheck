@@ -17,30 +17,16 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@/components/ui/sidebar"
-import { Skeleton } from "../ui/skeleton"
-import { fetchGuilds, UserGuilds } from "@/actions/fetchGuilds"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
+import { useTeams } from "@/contexts/TeamsProvider"
 
 export function TeamSwitcher() {
-	const [teams, setTeams] = React.useState<UserGuilds[]>([])
+	const teams = useTeams()
 	const { isMobile } = useSidebar()
 	const [activeTeam, setActiveTeam] = React.useState(teams[0])
 
-	React.useEffect(() => {
-		async function asyncTeamsSet() {
-			const fetchedGuilds = await fetchGuilds()
-			setTeams(fetchedGuilds)
-			setActiveTeam(fetchedGuilds[0])
-		}
-		asyncTeamsSet()
-	}, [])
-
 	if (!activeTeam) {
-		return (
-			<SidebarMenuButton size="lg" disabled>
-				<Skeleton className="h-full w-full" />
-			</SidebarMenuButton>
-		)
+		return null
 	}
 
 	return (
@@ -57,9 +43,7 @@ export function TeamSwitcher() {
 									src={`https://cdn.discordapp.com/icons/${activeTeam.id}/${activeTeam.icon}.png`}
 									alt="Avatar"
 								/>
-								<AvatarFallback>
-									{activeTeam.name[0]}
-								</AvatarFallback>
+								<AvatarFallback>?</AvatarFallback>
 							</Avatar>
 
 							<div className="grid flex-1 text-left text-sm leading-tight">
@@ -93,9 +77,7 @@ export function TeamSwitcher() {
 										src={`https://cdn.discordapp.com/icons/${team.id}/${team.icon}.png`}
 										alt="Avatar"
 									/>
-									<AvatarFallback>
-										{team.name[0]}
-									</AvatarFallback>
+									<AvatarFallback>?</AvatarFallback>
 								</Avatar>
 								{team.name}
 							</DropdownMenuItem>
