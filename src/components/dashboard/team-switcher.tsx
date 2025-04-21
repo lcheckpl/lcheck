@@ -57,7 +57,9 @@ export function TeamSwitcher() {
 									src={`https://cdn.discordapp.com/icons/${activeTeam.id}/${activeTeam.icon}.png`}
 									alt="Avatar"
 								/>
-								<AvatarFallback>CN</AvatarFallback>
+								<AvatarFallback>
+									{activeTeam.name[0]}
+								</AvatarFallback>
 							</Avatar>
 
 							<div className="grid flex-1 text-left text-sm leading-tight">
@@ -91,7 +93,9 @@ export function TeamSwitcher() {
 										src={`https://cdn.discordapp.com/icons/${team.id}/${team.icon}.png`}
 										alt="Avatar"
 									/>
-									<AvatarFallback>CN</AvatarFallback>
+									<AvatarFallback>
+										{team.name[0]}
+									</AvatarFallback>
 								</Avatar>
 								{team.name}
 							</DropdownMenuItem>
