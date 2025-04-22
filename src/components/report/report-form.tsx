@@ -102,7 +102,10 @@ export default function ReportForm({ servers }: { servers: UserGuild[] }) {
 						<FormItem>
 							<FormLabel>Opis</FormLabel>
 							<FormControl>
-								<Input placeholder="shadcn" {...field} />
+								<Input
+									placeholder="Dlaczego taka ocena?"
+									{...field}
+								/>
 							</FormControl>
 							<FormDescription>
 								Dodaj informacje, które mogą się przydać innym
