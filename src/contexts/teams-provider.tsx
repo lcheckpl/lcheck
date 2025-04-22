@@ -1,7 +1,7 @@
 "use client"
 
 import { authClient } from "@/lib/auth-client"
-import { UserGuild } from "@/lib/fetchGuilds"
+import { UserGuild } from "@/lib/fetch-guilds"
 import React, {
 	createContext,
 	useContext,

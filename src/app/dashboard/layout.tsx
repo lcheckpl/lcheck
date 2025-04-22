@@ -13,9 +13,9 @@ import {
 	SidebarProvider,
 	SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { TeamsProvider } from "@/contexts/TeamsProvider"
+import { TeamsProvider } from "@/contexts/teams-provider"
 import { auth } from "@/lib/auth"
-import { fetchGuilds } from "@/lib/fetchGuilds"
+import { fetchGuilds } from "@/lib/fetch-guilds"
 import { headers } from "next/headers"
 
 export default async function DashboardLayout({

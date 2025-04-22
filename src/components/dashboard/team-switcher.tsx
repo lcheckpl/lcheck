@@ -18,7 +18,7 @@ import {
 	useSidebar,
 } from "@/components/ui/sidebar"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
-import { useActiveTeam, useTeams } from "@/contexts/TeamsProvider"
+import { useActiveTeam, useTeams } from "@/contexts/teams-provider"
 
 export function TeamSwitcher() {
 	const teams = useTeams()
