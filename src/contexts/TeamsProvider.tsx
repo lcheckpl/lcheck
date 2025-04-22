@@ -1,7 +1,14 @@
 "use client"
 
+import { authClient } from "@/lib/auth-client"
 import { UserGuild } from "@/lib/fetchGuilds"
-import React, { createContext, useContext, ReactNode, useState } from "react"
+import React, {
+	createContext,
+	useContext,
+	ReactNode,
+	useState,
+	useEffect,
+} from "react"
 
 type ActiveTeamContextType = {
 	activeTeam: UserGuild | null
@@ -25,6 +32,14 @@ export const TeamsProvider = ({
 	const [activeTeamState, setActiveTeam] = useState<UserGuild | null>(
 		activeTeam || teams[0] || null,
 	)
+	useEffect(() => {
+		async function updateAsync() {
+			await authClient.updateUser({
+				selectedServer: activeTeamState?.id,
+			})
+		}
+		updateAsync()
+	}, [activeTeamState])
 
 	return (
 		<TeamsContext.Provider value={teams}>

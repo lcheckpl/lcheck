@@ -14,17 +14,29 @@ import {
 	SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { TeamsProvider } from "@/contexts/TeamsProvider"
+import { auth } from "@/lib/auth"
 import { fetchGuilds } from "@/lib/fetchGuilds"
+import { headers } from "next/headers"
 
 export default async function DashboardLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const teams = await fetchGuilds()
+	const [teams, session] = await Promise.all([
+		fetchGuilds(),
+		auth.api.getSession({
+			headers: await headers(),
+		}),
+	])
+
+	const selectedServer = teams.find(
+		(v) => v.id == session?.user.selectedServer,
+	)
+
 	return (
 		<SidebarProvider>
-			<TeamsProvider teams={teams}>
+			<TeamsProvider teams={teams} activeTeam={selectedServer}>
 				<AppSidebar />
 				<SidebarInset>
 					<header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">

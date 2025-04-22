@@ -9,6 +9,15 @@ export const auth = betterAuth({
 	database: prismaAdapter(prisma, {
 		provider: "postgresql",
 	}),
+	user: {
+		additionalFields: {
+			selectedServer: {
+				type: "string",
+				required: false,
+				input: true,
+			},
+		},
+	},
 	socialProviders: {
 		discord: {
 			clientId: process.env.DISCORD_CLIENT_ID as string,
