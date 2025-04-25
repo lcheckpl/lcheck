@@ -32,11 +32,6 @@ export default async function LatestReviews() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
-							<h3>
-								{review.isPositive
-									? "Pozytywna recenzja"
-									: "Negatywna recenzja"}
-							</h3>
 							<p className="text-muted-foreground">
 								{review.description}
 							</p>

@@ -1,7 +1,6 @@
-import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
-import { headers } from "next/headers"
 import { calculate } from "discord-permission"
+import { getSession } from "./auth"
 
 export interface UserGuild {
 	id: string
@@ -12,9 +11,7 @@ export interface UserGuild {
 }
 
 export async function fetchGuilds() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	})
+	const session = await getSession()
 
 	const user = await prisma.user.findFirstOrThrow({
 		include: { accounts: true },

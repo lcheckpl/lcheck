@@ -28,10 +28,15 @@ export const auth = betterAuth({
 })
 
 export async function requireAuth() {
-	const session = await auth.api.getSession({
-		headers: await headers(),
-	})
+	const session = await getSession()
 	if (!session?.user) {
 		return redirect("/login")
 	}
+}
+
+export async function getSession() {
+	const session = await auth.api.getSession({
+		headers: await headers(),
+	})
+	return session
 }

@@ -5719,14 +5719,25 @@ export namespace Prisma {
 
   export type AggregateReview = {
     _count: ReviewCountAggregateOutputType | null
+    _avg: ReviewAvgAggregateOutputType | null
+    _sum: ReviewSumAggregateOutputType | null
     _min: ReviewMinAggregateOutputType | null
     _max: ReviewMaxAggregateOutputType | null
+  }
+
+  export type ReviewAvgAggregateOutputType = {
+    rating: number | null
+  }
+
+  export type ReviewSumAggregateOutputType = {
+    rating: number | null
   }
 
   export type ReviewMinAggregateOutputType = {
     id: string | null
     userId: string | null
-    isPositive: boolean | null
+    serverId: string | null
+    rating: number | null
     description: string | null
     createdAt: Date | null
   }
@@ -5734,7 +5745,8 @@ export namespace Prisma {
   export type ReviewMaxAggregateOutputType = {
     id: string | null
     userId: string | null
-    isPositive: boolean | null
+    serverId: string | null
+    rating: number | null
     description: string | null
     createdAt: Date | null
   }
@@ -5742,17 +5754,27 @@ export namespace Prisma {
   export type ReviewCountAggregateOutputType = {
     id: number
     userId: number
-    isPositive: number
+    serverId: number
+    rating: number
     description: number
     createdAt: number
     _all: number
   }
 
 
+  export type ReviewAvgAggregateInputType = {
+    rating?: true
+  }
+
+  export type ReviewSumAggregateInputType = {
+    rating?: true
+  }
+
   export type ReviewMinAggregateInputType = {
     id?: true
     userId?: true
-    isPositive?: true
+    serverId?: true
+    rating?: true
     description?: true
     createdAt?: true
   }
@@ -5760,7 +5782,8 @@ export namespace Prisma {
   export type ReviewMaxAggregateInputType = {
     id?: true
     userId?: true
-    isPositive?: true
+    serverId?: true
+    rating?: true
     description?: true
     createdAt?: true
   }
@@ -5768,7 +5791,8 @@ export namespace Prisma {
   export type ReviewCountAggregateInputType = {
     id?: true
     userId?: true
-    isPositive?: true
+    serverId?: true
+    rating?: true
     description?: true
     createdAt?: true
     _all?: true
@@ -5812,6 +5836,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ReviewAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReviewSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ReviewMinAggregateInputType
@@ -5842,6 +5878,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ReviewCountAggregateInputType | true
+    _avg?: ReviewAvgAggregateInputType
+    _sum?: ReviewSumAggregateInputType
     _min?: ReviewMinAggregateInputType
     _max?: ReviewMaxAggregateInputType
   }
@@ -5849,10 +5887,13 @@ export namespace Prisma {
   export type ReviewGroupByOutputType = {
     id: string
     userId: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt: Date
     _count: ReviewCountAggregateOutputType | null
+    _avg: ReviewAvgAggregateOutputType | null
+    _sum: ReviewSumAggregateOutputType | null
     _min: ReviewMinAggregateOutputType | null
     _max: ReviewMaxAggregateOutputType | null
   }
@@ -5874,7 +5915,8 @@ export namespace Prisma {
   export type ReviewSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    isPositive?: boolean
+    serverId?: boolean
+    rating?: boolean
     description?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5883,7 +5925,8 @@ export namespace Prisma {
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    isPositive?: boolean
+    serverId?: boolean
+    rating?: boolean
     description?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5892,7 +5935,8 @@ export namespace Prisma {
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     userId?: boolean
-    isPositive?: boolean
+    serverId?: boolean
+    rating?: boolean
     description?: boolean
     createdAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -5901,12 +5945,13 @@ export namespace Prisma {
   export type ReviewSelectScalar = {
     id?: boolean
     userId?: boolean
-    isPositive?: boolean
+    serverId?: boolean
+    rating?: boolean
     description?: boolean
     createdAt?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "isPositive" | "description" | "createdAt", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "serverId" | "rating" | "description" | "createdAt", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -5925,7 +5970,8 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       userId: string
-      isPositive: boolean
+      serverId: string
+      rating: number
       description: string
       createdAt: Date
     }, ExtArgs["result"]["review"]>
@@ -6354,7 +6400,8 @@ export namespace Prisma {
   interface ReviewFieldRefs {
     readonly id: FieldRef<"Review", 'String'>
     readonly userId: FieldRef<"Review", 'String'>
-    readonly isPositive: FieldRef<"Review", 'Boolean'>
+    readonly serverId: FieldRef<"Review", 'String'>
+    readonly rating: FieldRef<"Review", 'Int'>
     readonly description: FieldRef<"Review", 'String'>
     readonly createdAt: FieldRef<"Review", 'DateTime'>
   }
@@ -6847,7 +6894,8 @@ export namespace Prisma {
   export const ReviewScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
-    isPositive: 'isPositive',
+    serverId: 'serverId',
+    rating: 'rating',
     description: 'description',
     createdAt: 'createdAt'
   };
@@ -6930,6 +6978,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -7240,7 +7302,8 @@ export namespace Prisma {
     NOT?: ReviewWhereInput | ReviewWhereInput[]
     id?: StringFilter<"Review"> | string
     userId?: StringFilter<"Review"> | string
-    isPositive?: BoolFilter<"Review"> | boolean
+    serverId?: StringFilter<"Review"> | string
+    rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -7249,7 +7312,8 @@ export namespace Prisma {
   export type ReviewOrderByWithRelationInput = {
     id?: SortOrder
     userId?: SortOrder
-    isPositive?: SortOrder
+    serverId?: SortOrder
+    rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -7257,25 +7321,30 @@ export namespace Prisma {
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    userId_serverId?: ReviewUserIdServerIdCompoundUniqueInput
     AND?: ReviewWhereInput | ReviewWhereInput[]
     OR?: ReviewWhereInput[]
     NOT?: ReviewWhereInput | ReviewWhereInput[]
     userId?: StringFilter<"Review"> | string
-    isPositive?: BoolFilter<"Review"> | boolean
+    serverId?: StringFilter<"Review"> | string
+    rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
+  }, "id" | "userId_serverId">
 
   export type ReviewOrderByWithAggregationInput = {
     id?: SortOrder
     userId?: SortOrder
-    isPositive?: SortOrder
+    serverId?: SortOrder
+    rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
+    _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
     _min?: ReviewMinOrderByAggregateInput
+    _sum?: ReviewSumOrderByAggregateInput
   }
 
   export type ReviewScalarWhereWithAggregatesInput = {
@@ -7284,7 +7353,8 @@ export namespace Prisma {
     NOT?: ReviewScalarWhereWithAggregatesInput | ReviewScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Review"> | string
     userId?: StringWithAggregatesFilter<"Review"> | string
-    isPositive?: BoolWithAggregatesFilter<"Review"> | boolean
+    serverId?: StringWithAggregatesFilter<"Review"> | string
+    rating?: IntWithAggregatesFilter<"Review"> | number
     description?: StringWithAggregatesFilter<"Review"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Review"> | Date | string
   }
@@ -7630,7 +7700,8 @@ export namespace Prisma {
 
   export type ReviewCreateInput = {
     id?: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutReviewInput
@@ -7639,14 +7710,16 @@ export namespace Prisma {
   export type ReviewUncheckedCreateInput = {
     id?: string
     userId: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
   }
 
   export type ReviewUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
@@ -7655,7 +7728,8 @@ export namespace Prisma {
   export type ReviewUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7663,14 +7737,16 @@ export namespace Prisma {
   export type ReviewCreateManyInput = {
     id?: string
     userId: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
   }
 
   export type ReviewUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7678,7 +7754,8 @@ export namespace Prisma {
   export type ReviewUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7993,18 +8070,40 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type ReviewUserIdServerIdCompoundUniqueInput = {
+    userId: string
+    serverId: string
+  }
+
   export type ReviewCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    isPositive?: SortOrder
+    serverId?: SortOrder
+    rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type ReviewAvgOrderByAggregateInput = {
+    rating?: SortOrder
   }
 
   export type ReviewMaxOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    isPositive?: SortOrder
+    serverId?: SortOrder
+    rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
   }
@@ -8012,9 +8111,30 @@ export namespace Prisma {
   export type ReviewMinOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
-    isPositive?: SortOrder
+    serverId?: SortOrder
+    rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type ReviewSumOrderByAggregateInput = {
+    rating?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -8197,6 +8317,14 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserUpdateOneRequiredWithoutReviewNestedInput = {
     create?: XOR<UserCreateWithoutReviewInput, UserUncheckedCreateWithoutReviewInput>
     connectOrCreate?: UserCreateOrConnectWithoutReviewInput
@@ -8352,6 +8480,33 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type SessionCreateWithoutUserInput = {
     id: string
     expiresAt: Date | string
@@ -8424,14 +8579,16 @@ export namespace Prisma {
 
   export type ReviewCreateWithoutUserInput = {
     id?: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
   }
 
   export type ReviewUncheckedCreateWithoutUserInput = {
     id?: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
   }
@@ -8533,7 +8690,8 @@ export namespace Prisma {
     NOT?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
     id?: StringFilter<"Review"> | string
     userId?: StringFilter<"Review"> | string
-    isPositive?: BoolFilter<"Review"> | boolean
+    serverId?: StringFilter<"Review"> | string
+    rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
   }
@@ -8769,7 +8927,8 @@ export namespace Prisma {
 
   export type ReviewCreateManyUserInput = {
     id?: string
-    isPositive: boolean
+    serverId: string
+    rating: number
     description: string
     createdAt?: Date | string
   }
@@ -8851,21 +9010,24 @@ export namespace Prisma {
 
   export type ReviewUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPositive?: BoolFieldUpdateOperationsInput | boolean
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

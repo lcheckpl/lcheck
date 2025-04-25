@@ -23,10 +23,19 @@ import {
 	SelectValue,
 } from "@/components/ui/select"
 import { UserGuild } from "@/lib/fetch-guilds"
+import { Loader2 } from "lucide-react"
+import { createReview } from "@/actions/create-review"
 
 export default function ReportForm({ servers }: { servers: UserGuild[] }) {
-	function onSubmit(values: z.infer<typeof reportFormSchema>) {
-		console.log(values)
+	async function onSubmit(values: z.infer<typeof reportFormSchema>) {
+		const result = await createReview(values)
+		if (result?.error == true) {
+			form.setError("serverId", {
+				message: result.message,
+			})
+			return
+		}
+		form.reset()
 	}
 
 	const form = useForm<z.infer<typeof reportFormSchema>>({
@@ -48,7 +57,7 @@ export default function ReportForm({ servers }: { servers: UserGuild[] }) {
 							<FormLabel>Serwer</FormLabel>
 							<Select
 								onValueChange={field.onChange}
-								defaultValue={field.value}
+								value={field.value}
 							>
 								<FormControl>
 									<SelectTrigger className="w-full">
@@ -115,7 +124,12 @@ export default function ReportForm({ servers }: { servers: UserGuild[] }) {
 						</FormItem>
 					)}
 				/>
-				<Button type="submit">Wyślij</Button>
+				<Button type="submit" disabled={form.formState.isSubmitting}>
+					{form.formState.isSubmitting && (
+						<Loader2 className="animate-spin" />
+					)}
+					{form.formState.isSubmitting ? "Wysyłanie" : "Wyślij"}
+				</Button>
 			</form>
 		</Form>
 	)

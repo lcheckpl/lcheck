@@ -167,7 +167,8 @@ exports.Prisma.VerificationScalarFieldEnum = {
 exports.Prisma.ReviewScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
-  isPositive: 'isPositive',
+  serverId: 'serverId',
+  rating: 'rating',
   description: 'description',
   createdAt: 'createdAt'
 };

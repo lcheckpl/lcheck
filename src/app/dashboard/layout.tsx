@@ -14,21 +14,15 @@ import {
 	SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { TeamsProvider } from "@/contexts/teams-provider"
-import { auth } from "@/lib/auth"
+import { getSession } from "@/lib/auth"
 import { fetchGuilds } from "@/lib/fetch-guilds"
-import { headers } from "next/headers"
 
 export default async function DashboardLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	const [teams, session] = await Promise.all([
-		fetchGuilds(),
-		auth.api.getSession({
-			headers: await headers(),
-		}),
-	])
+	const [teams, session] = await Promise.all([fetchGuilds(), getSession()])
 
 	const selectedServer = teams.find(
 		(v) => v.id == session?.user.selectedServer,
