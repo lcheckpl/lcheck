@@ -24,13 +24,13 @@ export default async function DashboardLayout({
 }>) {
 	const [teams, session] = await Promise.all([fetchGuilds(), getSession()])
 
-	const selectedServer = teams.find(
+	const selectedServer = teams.guilds.find(
 		(v) => v.id == session?.user.selectedServer,
 	)
 
 	return (
 		<SidebarProvider>
-			<TeamsProvider teams={teams} activeTeam={selectedServer}>
+			<TeamsProvider teams={teams.guilds} activeTeam={selectedServer}>
 				<AppSidebar />
 				<SidebarInset>
 					<header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
