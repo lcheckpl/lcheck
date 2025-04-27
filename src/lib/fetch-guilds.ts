@@ -10,7 +10,7 @@ export interface UserGuild {
 	admin: boolean
 }
 
-interface IFetchGuilds {
+export interface IFetchGuilds {
 	status: number
 	guilds: UserGuild[]
 }

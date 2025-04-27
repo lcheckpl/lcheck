@@ -5,9 +5,7 @@ import { prisma } from "@/lib/prisma"
 import { reportFormSchema } from "@/schema/report-schema"
 import { z } from "zod"
 
-export async function createReviewAction(
-	data: z.infer<typeof reportFormSchema>,
-) {
+export async function createReview(data: z.infer<typeof reportFormSchema>) {
 	const session = await getSession()
 	if (!session?.user) {
 		return {

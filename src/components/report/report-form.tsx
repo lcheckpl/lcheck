@@ -22,30 +22,13 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/ui/select"
-import { UserGuild } from "@/lib/fetch-guilds"
+import { IFetchGuilds } from "@/lib/fetch-guilds"
 import { Loader2 } from "lucide-react"
-import { createReviewAction } from "@/actions/create-review-action"
-import { useEffect, useState } from "react"
-import { fetchGuildsAction } from "@/actions/fetch-guilds-action"
+import { createReview } from "@/actions/create-review"
 
-export default function ReportForm() {
-	const [servers, setServers] = useState<UserGuild[]>([])
-	const [isLoading, setIsLoading] = useState(true)
-	const [status, setStatus] = useState(200)
-
-	useEffect(() => {
-		async function awaitServers() {
-			const fetchedServers = await fetchGuildsAction()
-			setServers(fetchedServers.guilds)
-			setIsLoading(false)
-			setStatus(fetchedServers.status)
-			console.log(fetchedServers)
-		}
-		awaitServers()
-	}, [])
-
+export default function ReportForm({ servers }: { servers: IFetchGuilds }) {
 	async function onSubmit(values: z.infer<typeof reportFormSchema>) {
-		const result = await createReviewAction(values)
+		const result = await createReview(values)
 		if (result?.error == true) {
 			form.setError("serverId", {
 				message: result.message,
@@ -75,23 +58,21 @@ export default function ReportForm() {
 							<Select
 								onValueChange={field.onChange}
 								value={field.value}
-								disabled={isLoading || status != 200}
+								disabled={servers.status != 200}
 							>
 								<FormControl>
 									<SelectTrigger className="w-full">
 										<SelectValue
 											placeholder={
-												isLoading
-													? "Pobieranie listy serwerów"
-													: status !== 200
-														? "Błąd podczas pobierania serwerów"
-														: "Wybierz serwer"
+												servers.status !== 200
+													? "Błąd podczas pobierania serwerów"
+													: "Wybierz serwer"
 											}
 										/>
 									</SelectTrigger>
 								</FormControl>
 								<SelectContent>
-									{servers.map((v) => (
+									{servers.guilds.map((v) => (
 										<SelectItem key={v.id} value={v.id}>
 											{v.name}
 										</SelectItem>

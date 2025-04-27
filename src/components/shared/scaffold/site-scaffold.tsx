@@ -12,7 +12,7 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 		},
 		menu: [
 			{
-				title: "Home",
+				title: "Strona główna",
 				url: "/",
 			},
 			{
@@ -98,8 +98,8 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 			{ name: "Sitemap", url: "/sitemap" },
 		],
 		auth: {
-			login: { text: "Log in", url: "/login" },
-			signup: { text: "Sign up", url: "/signup" },
+			login: { text: "Panel", url: "/dashboard" },
+			signup: { text: "Nowe zgłoszenie", url: "/report" },
 		},
 	}
 
