@@ -24,11 +24,24 @@ import {
 } from "@/components/ui/select"
 import { UserGuild } from "@/lib/fetch-guilds"
 import { Loader2 } from "lucide-react"
-import { createReview } from "@/actions/create-review"
+import { createReviewAction } from "@/actions/create-review-action"
+import { useEffect, useState } from "react"
+import { fetchGuildsAction } from "@/actions/fetch-guilds-action"
 
-export default function ReportForm({ servers }: { servers: UserGuild[] }) {
+export default function ReportForm() {
+	const [servers, setServers] = useState<UserGuild[]>([])
+	const [isLoading, setIsLoading] = useState(true)
+	useEffect(() => {
+		async function awaitServers() {
+			const fetchedServers = await fetchGuildsAction()
+			setServers(fetchedServers)
+			setIsLoading(false)
+		}
+		awaitServers()
+	})
+
 	async function onSubmit(values: z.infer<typeof reportFormSchema>) {
-		const result = await createReview(values)
+		const result = await createReviewAction(values)
 		if (result?.error == true) {
 			form.setError("serverId", {
 				message: result.message,
@@ -58,10 +71,17 @@ export default function ReportForm({ servers }: { servers: UserGuild[] }) {
 							<Select
 								onValueChange={field.onChange}
 								value={field.value}
+								disabled={isLoading}
 							>
 								<FormControl>
 									<SelectTrigger className="w-full">
-										<SelectValue placeholder="Wybierz serwer z listy" />
+										<SelectValue
+											placeholder={
+												isLoading
+													? "Pobieranie listy serwerów..."
+													: "Wybierz serwer z listy"
+											}
+										/>
 									</SelectTrigger>
 								</FormControl>
 								<SelectContent>
