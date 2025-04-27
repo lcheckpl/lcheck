@@ -5,6 +5,7 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { Briefcase, FileText, Home, LucideIcon, User } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { usePathname } from "next/navigation"
 
 interface NavItem {
 	name: string
@@ -19,11 +20,14 @@ interface NavBarProps {
 export function NavBar({ className }: NavBarProps) {
 	const items: NavItem[] = [
 		{ name: "Home", url: "/", icon: Home },
-		{ name: "Nowe zgłoszenie", url: "report", icon: User },
+		{ name: "Nowe zgłoszenie", url: "/report", icon: User },
 		{ name: "Projects", url: "#", icon: Briefcase },
 		{ name: "Resume", url: "#", icon: FileText },
 	]
-	const [activeTab, setActiveTab] = useState(items[0].name)
+	const pathname = usePathname()
+	const [activeTab, setActiveTab] = useState(
+		items.find((v) => v.url == pathname)?.name || items[0].name,
+	)
 	const [, setIsMobile] = useState(false)
 
 	useEffect(() => {

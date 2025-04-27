@@ -31,14 +31,18 @@ import { fetchGuildsAction } from "@/actions/fetch-guilds-action"
 export default function ReportForm() {
 	const [servers, setServers] = useState<UserGuild[]>([])
 	const [isLoading, setIsLoading] = useState(true)
+	const [status, setStatus] = useState(200)
+
 	useEffect(() => {
 		async function awaitServers() {
 			const fetchedServers = await fetchGuildsAction()
-			setServers(fetchedServers)
+			setServers(fetchedServers.guilds)
 			setIsLoading(false)
+			setStatus(fetchedServers.status)
+			console.log(fetchedServers)
 		}
 		awaitServers()
-	})
+	}, [])
 
 	async function onSubmit(values: z.infer<typeof reportFormSchema>) {
 		const result = await createReviewAction(values)
@@ -71,15 +75,17 @@ export default function ReportForm() {
 							<Select
 								onValueChange={field.onChange}
 								value={field.value}
-								disabled={isLoading}
+								disabled={isLoading || status != 200}
 							>
 								<FormControl>
 									<SelectTrigger className="w-full">
 										<SelectValue
 											placeholder={
 												isLoading
-													? "Pobieranie listy serwerów..."
-													: "Wybierz serwer z listy"
+													? "Pobieranie listy serwerów"
+													: status !== 200
+														? "Błąd podczas pobierania serwerów"
+														: "Wybierz serwer"
 											}
 										/>
 									</SelectTrigger>

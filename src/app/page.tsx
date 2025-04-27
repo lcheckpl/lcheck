@@ -5,11 +5,9 @@ import { SiteScaffold } from "@/components/shared/scaffold/site-scaffold"
 export default function HomePage() {
 	return (
 		<SiteScaffold>
-			<div className="p-6">
-				<div className="flex flex-col gap-32">
-					<HeroSection />
-					<LatestReviews />
-				</div>
+			<div className="flex flex-col gap-32">
+				<HeroSection />
+				<LatestReviews />
 			</div>
 		</SiteScaffold>
 	)

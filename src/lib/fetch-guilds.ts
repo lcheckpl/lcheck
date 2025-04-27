@@ -10,7 +10,12 @@ export interface UserGuild {
 	admin: boolean
 }
 
-export async function fetchGuilds() {
+interface IFetchGuilds {
+	status: number
+	guilds: UserGuild[]
+}
+
+export async function fetchGuilds(): Promise<IFetchGuilds> {
 	const session = await getSession()
 
 	const user = await prisma.user.findFirstOrThrow({
@@ -33,7 +38,10 @@ export async function fetchGuilds() {
 		},
 	})
 	if (!result.ok) {
-		return []
+		return {
+			status: result.status,
+			guilds: [],
+		}
 	}
 	const json: [
 		{
@@ -58,5 +66,5 @@ export async function fetchGuilds() {
 			admin: true,
 		}))
 
-	return mappedGuilds
+	return { status: result.status, guilds: mappedGuilds }
 }
