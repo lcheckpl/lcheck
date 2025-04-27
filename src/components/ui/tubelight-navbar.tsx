@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
-import { LucideIcon } from "lucide-react"
+import { Briefcase, FileText, Home, LucideIcon, User } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface NavItem {
@@ -13,11 +13,16 @@ interface NavItem {
 }
 
 interface NavBarProps {
-	items: NavItem[]
 	className?: string
 }
 
-export function NavBar({ items, className }: NavBarProps) {
+export function NavBar({ className }: NavBarProps) {
+	const items: NavItem[] = [
+		{ name: "Home", url: "/", icon: Home },
+		{ name: "Nowe zgłoszenie", url: "report", icon: User },
+		{ name: "Projects", url: "#", icon: Briefcase },
+		{ name: "Resume", url: "#", icon: FileText },
+	]
 	const [activeTab, setActiveTab] = useState(items[0].name)
 	const [, setIsMobile] = useState(false)
 
