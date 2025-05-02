@@ -32,6 +32,31 @@ export async function requireAuth() {
 	if (!session?.user) {
 		return redirect("/login")
 	}
+	const user = await prisma.user.findFirstOrThrow({
+		include: { accounts: true },
+		where: {
+			AND: {
+				id: session?.user.id,
+				accounts: {
+					some: {
+						providerId: "discord",
+					},
+				},
+			},
+		},
+	})
+	const token = user.accounts[0].accessToken
+	const result = await fetch("https://discord.com/api/users/@me", {
+		headers: {
+			authorization: `Bearer ${token}`,
+		},
+	})
+	if (!result.ok) {
+		auth.api.signOut({
+			headers: await headers(),
+		})
+		return redirect("/login")
+	}
 }
 
 export async function getSession() {
