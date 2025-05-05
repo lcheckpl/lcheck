@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma"
 import { calculate } from "discord-permission"
 import { getSession } from "./auth"
+import { redirect } from "next/navigation"
 
 export interface UserGuild {
 	id: string
@@ -18,7 +19,7 @@ export interface IFetchGuilds {
 export async function fetchGuilds(): Promise<IFetchGuilds> {
 	const session = await getSession()
 
-	const user = await prisma.user.findFirstOrThrow({
+	const user = await prisma.user.findFirst({
 		include: { accounts: true },
 		where: {
 			AND: {
@@ -31,6 +32,9 @@ export async function fetchGuilds(): Promise<IFetchGuilds> {
 			},
 		},
 	})
+	if (!user) {
+		redirect("/login")
+	}
 	const token = user.accounts[0].accessToken
 	const result = await fetch("https://discord.com/api/users/@me/guilds", {
 		headers: {
@@ -72,11 +76,11 @@ export async function fetchGuilds(): Promise<IFetchGuilds> {
 				create: {
 					id: guild.id,
 					name: guild.name,
-					icon: guild.icon,
+					icon: guild.icon || "",
 				},
 				update: {
 					name: guild.name,
-					icon: guild.icon,
+					icon: guild.icon || "",
 				},
 				where: {
 					id: guild.id,

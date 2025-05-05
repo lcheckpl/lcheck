@@ -32,7 +32,7 @@ export async function requireAuth() {
 	if (!session?.user) {
 		return redirect("/login")
 	}
-	const user = await prisma.user.findFirstOrThrow({
+	const user = await prisma.user.findFirst({
 		include: { accounts: true },
 		where: {
 			AND: {
@@ -45,6 +45,9 @@ export async function requireAuth() {
 			},
 		},
 	})
+	if (!user) {
+		return redirect("/login")
+	}
 	const token = user.accounts[0].accessToken
 	const result = await fetch("https://discord.com/api/users/@me", {
 		headers: {
