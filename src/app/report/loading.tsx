@@ -1,12 +1,12 @@
 import { SiteScaffold } from "@/components/shared/scaffold/site-scaffold"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Loader2 } from "lucide-react"
 
 export default function LoadingReport() {
 	return (
 		<SiteScaffold>
 			<div className="mx-auto flex max-w-5xl flex-col gap-18">
 				<h1>Nowe zgłoszenie</h1>
-				<Skeleton className="h-96 w-full" />
+				<Loader2 className="mx-auto size-10 animate-spin" />
 			</div>
 		</SiteScaffold>
 	)
