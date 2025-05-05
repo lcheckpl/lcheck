@@ -77,13 +77,23 @@ model Verification {
 }
 
 model Review {
-  id          String   @id @default(uuid())
-  user        User     @relation(fields: [userId], references: [id])
-  userId      String
-  serverId    String
-  rating      Int
-  description String
-  createdAt   DateTime @default(now())
+  id            String      @id @default(uuid())
+  user          User        @relation(fields: [userId], references: [id])
+  userId        String
+  serverId      String
+  rating        Int
+  description   String
+  createdAt     DateTime    @default(now())
+  serverCache   ServerCache @relation(fields: [serverCacheId], references: [id])
+  serverCacheId String
 
   @@unique([userId, serverId])
+}
+
+model ServerCache {
+  id       String   @id
+  name     String
+  icon     String
+  reviewId String?
+  Review   Review[]
 }

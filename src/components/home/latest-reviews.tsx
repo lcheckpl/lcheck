@@ -11,7 +11,9 @@ import {
 import { Separator } from "../ui/separator"
 
 export default async function LatestReviews() {
-	const reviews = await prisma.review.findMany({ include: { user: true } })
+	const reviews = await prisma.review.findMany({
+		include: { user: true, serverCache: true },
+	})
 	return (
 		<div className="flex flex-col gap-16">
 			<h1>Najnowsze recenzje</h1>
@@ -38,7 +40,7 @@ export default async function LatestReviews() {
 						</CardContent>
 						<Separator />
 						<CardFooter>
-							<p>Serwer: Szkibidi</p>
+							<p>Serwer: {review.serverCache.</p>
 						</CardFooter>
 					</Card>
 				))}

@@ -170,7 +170,15 @@ exports.Prisma.ReviewScalarFieldEnum = {
   serverId: 'serverId',
   rating: 'rating',
   description: 'description',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  serverCacheId: 'serverCacheId'
+};
+
+exports.Prisma.ServerCacheScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  icon: 'icon',
+  reviewId: 'reviewId'
 };
 
 exports.Prisma.SortOrder = {
@@ -194,7 +202,8 @@ exports.Prisma.ModelName = {
   Session: 'Session',
   Account: 'Account',
   Verification: 'Verification',
-  Review: 'Review'
+  Review: 'Review',
+  ServerCache: 'ServerCache'
 };
 
 /**

@@ -38,6 +38,11 @@ export type Verification = $Result.DefaultSelection<Prisma.$VerificationPayload>
  * 
  */
 export type Review = $Result.DefaultSelection<Prisma.$ReviewPayload>
+/**
+ * Model ServerCache
+ * 
+ */
+export type ServerCache = $Result.DefaultSelection<Prisma.$ServerCachePayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -213,6 +218,16 @@ export class PrismaClient<
     * ```
     */
   get review(): Prisma.ReviewDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serverCache`: Exposes CRUD operations for the **ServerCache** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServerCaches
+    * const serverCaches = await prisma.serverCache.findMany()
+    * ```
+    */
+  get serverCache(): Prisma.ServerCacheDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -657,7 +672,8 @@ export namespace Prisma {
     Session: 'Session',
     Account: 'Account',
     Verification: 'Verification',
-    Review: 'Review'
+    Review: 'Review',
+    ServerCache: 'ServerCache'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -676,7 +692,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "review"
+      modelProps: "user" | "session" | "account" | "verification" | "review" | "serverCache"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1050,6 +1066,80 @@ export namespace Prisma {
           }
         }
       }
+      ServerCache: {
+        payload: Prisma.$ServerCachePayload<ExtArgs>
+        fields: Prisma.ServerCacheFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServerCacheFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServerCacheFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          findFirst: {
+            args: Prisma.ServerCacheFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServerCacheFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          findMany: {
+            args: Prisma.ServerCacheFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>[]
+          }
+          create: {
+            args: Prisma.ServerCacheCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          createMany: {
+            args: Prisma.ServerCacheCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServerCacheCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>[]
+          }
+          delete: {
+            args: Prisma.ServerCacheDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          update: {
+            args: Prisma.ServerCacheUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          deleteMany: {
+            args: Prisma.ServerCacheDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServerCacheUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServerCacheUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>[]
+          }
+          upsert: {
+            args: Prisma.ServerCacheUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerCachePayload>
+          }
+          aggregate: {
+            args: Prisma.ServerCacheAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServerCache>
+          }
+          groupBy: {
+            args: Prisma.ServerCacheGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServerCacheGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServerCacheCountArgs<ExtArgs>
+            result: $Utils.Optional<ServerCacheCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1139,6 +1229,7 @@ export namespace Prisma {
     account?: AccountOmit
     verification?: VerificationOmit
     review?: ReviewOmit
+    serverCache?: ServerCacheOmit
   }
 
   /* Types for Logging */
@@ -1273,6 +1364,37 @@ export namespace Prisma {
    * UserCountOutputType without action
    */
   export type UserCountOutputTypeCountReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReviewWhereInput
+  }
+
+
+  /**
+   * Count Type ServerCacheCountOutputType
+   */
+
+  export type ServerCacheCountOutputType = {
+    Review: number
+  }
+
+  export type ServerCacheCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Review?: boolean | ServerCacheCountOutputTypeCountReviewArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ServerCacheCountOutputType without action
+   */
+  export type ServerCacheCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCacheCountOutputType
+     */
+    select?: ServerCacheCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ServerCacheCountOutputType without action
+   */
+  export type ServerCacheCountOutputTypeCountReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReviewWhereInput
   }
 
@@ -5740,6 +5862,7 @@ export namespace Prisma {
     rating: number | null
     description: string | null
     createdAt: Date | null
+    serverCacheId: string | null
   }
 
   export type ReviewMaxAggregateOutputType = {
@@ -5749,6 +5872,7 @@ export namespace Prisma {
     rating: number | null
     description: string | null
     createdAt: Date | null
+    serverCacheId: string | null
   }
 
   export type ReviewCountAggregateOutputType = {
@@ -5758,6 +5882,7 @@ export namespace Prisma {
     rating: number
     description: number
     createdAt: number
+    serverCacheId: number
     _all: number
   }
 
@@ -5777,6 +5902,7 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
+    serverCacheId?: true
   }
 
   export type ReviewMaxAggregateInputType = {
@@ -5786,6 +5912,7 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
+    serverCacheId?: true
   }
 
   export type ReviewCountAggregateInputType = {
@@ -5795,6 +5922,7 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
+    serverCacheId?: true
     _all?: true
   }
 
@@ -5891,6 +6019,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt: Date
+    serverCacheId: string
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
     _sum: ReviewSumAggregateOutputType | null
@@ -5919,7 +6048,9 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
+    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5929,7 +6060,9 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
+    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5939,7 +6072,9 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
+    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
@@ -5949,23 +6084,28 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
+    serverCacheId?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "serverId" | "rating" | "description" | "createdAt", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "serverId" | "rating" | "description" | "createdAt" | "serverCacheId", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
+    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
+      serverCache: Prisma.$ServerCachePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5974,6 +6114,7 @@ export namespace Prisma {
       rating: number
       description: string
       createdAt: Date
+      serverCacheId: string
     }, ExtArgs["result"]["review"]>
     composites: {}
   }
@@ -6369,6 +6510,7 @@ export namespace Prisma {
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    serverCache<T extends ServerCacheDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServerCacheDefaultArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6404,6 +6546,7 @@ export namespace Prisma {
     readonly rating: FieldRef<"Review", 'Int'>
     readonly description: FieldRef<"Review", 'String'>
     readonly createdAt: FieldRef<"Review", 'DateTime'>
+    readonly serverCacheId: FieldRef<"Review", 'String'>
   }
     
 
@@ -6819,6 +6962,1063 @@ export namespace Prisma {
 
 
   /**
+   * Model ServerCache
+   */
+
+  export type AggregateServerCache = {
+    _count: ServerCacheCountAggregateOutputType | null
+    _min: ServerCacheMinAggregateOutputType | null
+    _max: ServerCacheMaxAggregateOutputType | null
+  }
+
+  export type ServerCacheMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    icon: string | null
+    reviewId: string | null
+  }
+
+  export type ServerCacheMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    icon: string | null
+    reviewId: string | null
+  }
+
+  export type ServerCacheCountAggregateOutputType = {
+    id: number
+    name: number
+    icon: number
+    reviewId: number
+    _all: number
+  }
+
+
+  export type ServerCacheMinAggregateInputType = {
+    id?: true
+    name?: true
+    icon?: true
+    reviewId?: true
+  }
+
+  export type ServerCacheMaxAggregateInputType = {
+    id?: true
+    name?: true
+    icon?: true
+    reviewId?: true
+  }
+
+  export type ServerCacheCountAggregateInputType = {
+    id?: true
+    name?: true
+    icon?: true
+    reviewId?: true
+    _all?: true
+  }
+
+  export type ServerCacheAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServerCache to aggregate.
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerCaches to fetch.
+     */
+    orderBy?: ServerCacheOrderByWithRelationInput | ServerCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServerCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServerCaches
+    **/
+    _count?: true | ServerCacheCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServerCacheMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServerCacheMaxAggregateInputType
+  }
+
+  export type GetServerCacheAggregateType<T extends ServerCacheAggregateArgs> = {
+        [P in keyof T & keyof AggregateServerCache]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServerCache[P]>
+      : GetScalarType<T[P], AggregateServerCache[P]>
+  }
+
+
+
+
+  export type ServerCacheGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServerCacheWhereInput
+    orderBy?: ServerCacheOrderByWithAggregationInput | ServerCacheOrderByWithAggregationInput[]
+    by: ServerCacheScalarFieldEnum[] | ServerCacheScalarFieldEnum
+    having?: ServerCacheScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServerCacheCountAggregateInputType | true
+    _min?: ServerCacheMinAggregateInputType
+    _max?: ServerCacheMaxAggregateInputType
+  }
+
+  export type ServerCacheGroupByOutputType = {
+    id: string
+    name: string
+    icon: string
+    reviewId: string | null
+    _count: ServerCacheCountAggregateOutputType | null
+    _min: ServerCacheMinAggregateOutputType | null
+    _max: ServerCacheMaxAggregateOutputType | null
+  }
+
+  type GetServerCacheGroupByPayload<T extends ServerCacheGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServerCacheGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServerCacheGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServerCacheGroupByOutputType[P]>
+            : GetScalarType<T[P], ServerCacheGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServerCacheSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    icon?: boolean
+    reviewId?: boolean
+    Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
+    _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serverCache"]>
+
+  export type ServerCacheSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    icon?: boolean
+    reviewId?: boolean
+  }, ExtArgs["result"]["serverCache"]>
+
+  export type ServerCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    icon?: boolean
+    reviewId?: boolean
+  }, ExtArgs["result"]["serverCache"]>
+
+  export type ServerCacheSelectScalar = {
+    id?: boolean
+    name?: boolean
+    icon?: boolean
+    reviewId?: boolean
+  }
+
+  export type ServerCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "icon" | "reviewId", ExtArgs["result"]["serverCache"]>
+  export type ServerCacheInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
+    _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ServerCacheIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ServerCacheIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $ServerCachePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServerCache"
+    objects: {
+      Review: Prisma.$ReviewPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      icon: string
+      reviewId: string | null
+    }, ExtArgs["result"]["serverCache"]>
+    composites: {}
+  }
+
+  type ServerCacheGetPayload<S extends boolean | null | undefined | ServerCacheDefaultArgs> = $Result.GetResult<Prisma.$ServerCachePayload, S>
+
+  type ServerCacheCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServerCacheFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServerCacheCountAggregateInputType | true
+    }
+
+  export interface ServerCacheDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServerCache'], meta: { name: 'ServerCache' } }
+    /**
+     * Find zero or one ServerCache that matches the filter.
+     * @param {ServerCacheFindUniqueArgs} args - Arguments to find a ServerCache
+     * @example
+     * // Get one ServerCache
+     * const serverCache = await prisma.serverCache.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServerCacheFindUniqueArgs>(args: SelectSubset<T, ServerCacheFindUniqueArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServerCache that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServerCacheFindUniqueOrThrowArgs} args - Arguments to find a ServerCache
+     * @example
+     * // Get one ServerCache
+     * const serverCache = await prisma.serverCache.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServerCacheFindUniqueOrThrowArgs>(args: SelectSubset<T, ServerCacheFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServerCache that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheFindFirstArgs} args - Arguments to find a ServerCache
+     * @example
+     * // Get one ServerCache
+     * const serverCache = await prisma.serverCache.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServerCacheFindFirstArgs>(args?: SelectSubset<T, ServerCacheFindFirstArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServerCache that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheFindFirstOrThrowArgs} args - Arguments to find a ServerCache
+     * @example
+     * // Get one ServerCache
+     * const serverCache = await prisma.serverCache.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServerCacheFindFirstOrThrowArgs>(args?: SelectSubset<T, ServerCacheFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServerCaches that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServerCaches
+     * const serverCaches = await prisma.serverCache.findMany()
+     * 
+     * // Get first 10 ServerCaches
+     * const serverCaches = await prisma.serverCache.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serverCacheWithIdOnly = await prisma.serverCache.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServerCacheFindManyArgs>(args?: SelectSubset<T, ServerCacheFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServerCache.
+     * @param {ServerCacheCreateArgs} args - Arguments to create a ServerCache.
+     * @example
+     * // Create one ServerCache
+     * const ServerCache = await prisma.serverCache.create({
+     *   data: {
+     *     // ... data to create a ServerCache
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServerCacheCreateArgs>(args: SelectSubset<T, ServerCacheCreateArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServerCaches.
+     * @param {ServerCacheCreateManyArgs} args - Arguments to create many ServerCaches.
+     * @example
+     * // Create many ServerCaches
+     * const serverCache = await prisma.serverCache.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServerCacheCreateManyArgs>(args?: SelectSubset<T, ServerCacheCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServerCaches and returns the data saved in the database.
+     * @param {ServerCacheCreateManyAndReturnArgs} args - Arguments to create many ServerCaches.
+     * @example
+     * // Create many ServerCaches
+     * const serverCache = await prisma.serverCache.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServerCaches and only return the `id`
+     * const serverCacheWithIdOnly = await prisma.serverCache.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServerCacheCreateManyAndReturnArgs>(args?: SelectSubset<T, ServerCacheCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServerCache.
+     * @param {ServerCacheDeleteArgs} args - Arguments to delete one ServerCache.
+     * @example
+     * // Delete one ServerCache
+     * const ServerCache = await prisma.serverCache.delete({
+     *   where: {
+     *     // ... filter to delete one ServerCache
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServerCacheDeleteArgs>(args: SelectSubset<T, ServerCacheDeleteArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServerCache.
+     * @param {ServerCacheUpdateArgs} args - Arguments to update one ServerCache.
+     * @example
+     * // Update one ServerCache
+     * const serverCache = await prisma.serverCache.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServerCacheUpdateArgs>(args: SelectSubset<T, ServerCacheUpdateArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServerCaches.
+     * @param {ServerCacheDeleteManyArgs} args - Arguments to filter ServerCaches to delete.
+     * @example
+     * // Delete a few ServerCaches
+     * const { count } = await prisma.serverCache.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServerCacheDeleteManyArgs>(args?: SelectSubset<T, ServerCacheDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServerCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServerCaches
+     * const serverCache = await prisma.serverCache.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServerCacheUpdateManyArgs>(args: SelectSubset<T, ServerCacheUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServerCaches and returns the data updated in the database.
+     * @param {ServerCacheUpdateManyAndReturnArgs} args - Arguments to update many ServerCaches.
+     * @example
+     * // Update many ServerCaches
+     * const serverCache = await prisma.serverCache.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServerCaches and only return the `id`
+     * const serverCacheWithIdOnly = await prisma.serverCache.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServerCacheUpdateManyAndReturnArgs>(args: SelectSubset<T, ServerCacheUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServerCache.
+     * @param {ServerCacheUpsertArgs} args - Arguments to update or create a ServerCache.
+     * @example
+     * // Update or create a ServerCache
+     * const serverCache = await prisma.serverCache.upsert({
+     *   create: {
+     *     // ... data to create a ServerCache
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServerCache we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServerCacheUpsertArgs>(args: SelectSubset<T, ServerCacheUpsertArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServerCaches.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheCountArgs} args - Arguments to filter ServerCaches to count.
+     * @example
+     * // Count the number of ServerCaches
+     * const count = await prisma.serverCache.count({
+     *   where: {
+     *     // ... the filter for the ServerCaches we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServerCacheCountArgs>(
+      args?: Subset<T, ServerCacheCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServerCacheCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServerCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServerCacheAggregateArgs>(args: Subset<T, ServerCacheAggregateArgs>): Prisma.PrismaPromise<GetServerCacheAggregateType<T>>
+
+    /**
+     * Group by ServerCache.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerCacheGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServerCacheGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServerCacheGroupByArgs['orderBy'] }
+        : { orderBy?: ServerCacheGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServerCacheGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServerCacheGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServerCache model
+   */
+  readonly fields: ServerCacheFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServerCache.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServerCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Review<T extends ServerCache$ReviewArgs<ExtArgs> = {}>(args?: Subset<T, ServerCache$ReviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServerCache model
+   */
+  interface ServerCacheFieldRefs {
+    readonly id: FieldRef<"ServerCache", 'String'>
+    readonly name: FieldRef<"ServerCache", 'String'>
+    readonly icon: FieldRef<"ServerCache", 'String'>
+    readonly reviewId: FieldRef<"ServerCache", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServerCache findUnique
+   */
+  export type ServerCacheFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerCache to fetch.
+     */
+    where: ServerCacheWhereUniqueInput
+  }
+
+  /**
+   * ServerCache findUniqueOrThrow
+   */
+  export type ServerCacheFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerCache to fetch.
+     */
+    where: ServerCacheWhereUniqueInput
+  }
+
+  /**
+   * ServerCache findFirst
+   */
+  export type ServerCacheFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerCache to fetch.
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerCaches to fetch.
+     */
+    orderBy?: ServerCacheOrderByWithRelationInput | ServerCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServerCaches.
+     */
+    cursor?: ServerCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServerCaches.
+     */
+    distinct?: ServerCacheScalarFieldEnum | ServerCacheScalarFieldEnum[]
+  }
+
+  /**
+   * ServerCache findFirstOrThrow
+   */
+  export type ServerCacheFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerCache to fetch.
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerCaches to fetch.
+     */
+    orderBy?: ServerCacheOrderByWithRelationInput | ServerCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServerCaches.
+     */
+    cursor?: ServerCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerCaches.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServerCaches.
+     */
+    distinct?: ServerCacheScalarFieldEnum | ServerCacheScalarFieldEnum[]
+  }
+
+  /**
+   * ServerCache findMany
+   */
+  export type ServerCacheFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerCaches to fetch.
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerCaches to fetch.
+     */
+    orderBy?: ServerCacheOrderByWithRelationInput | ServerCacheOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServerCaches.
+     */
+    cursor?: ServerCacheWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerCaches from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerCaches.
+     */
+    skip?: number
+    distinct?: ServerCacheScalarFieldEnum | ServerCacheScalarFieldEnum[]
+  }
+
+  /**
+   * ServerCache create
+   */
+  export type ServerCacheCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServerCache.
+     */
+    data: XOR<ServerCacheCreateInput, ServerCacheUncheckedCreateInput>
+  }
+
+  /**
+   * ServerCache createMany
+   */
+  export type ServerCacheCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServerCaches.
+     */
+    data: ServerCacheCreateManyInput | ServerCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServerCache createManyAndReturn
+   */
+  export type ServerCacheCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServerCaches.
+     */
+    data: ServerCacheCreateManyInput | ServerCacheCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServerCache update
+   */
+  export type ServerCacheUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServerCache.
+     */
+    data: XOR<ServerCacheUpdateInput, ServerCacheUncheckedUpdateInput>
+    /**
+     * Choose, which ServerCache to update.
+     */
+    where: ServerCacheWhereUniqueInput
+  }
+
+  /**
+   * ServerCache updateMany
+   */
+  export type ServerCacheUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServerCaches.
+     */
+    data: XOR<ServerCacheUpdateManyMutationInput, ServerCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which ServerCaches to update
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * Limit how many ServerCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServerCache updateManyAndReturn
+   */
+  export type ServerCacheUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * The data used to update ServerCaches.
+     */
+    data: XOR<ServerCacheUpdateManyMutationInput, ServerCacheUncheckedUpdateManyInput>
+    /**
+     * Filter which ServerCaches to update
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * Limit how many ServerCaches to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServerCache upsert
+   */
+  export type ServerCacheUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServerCache to update in case it exists.
+     */
+    where: ServerCacheWhereUniqueInput
+    /**
+     * In case the ServerCache found by the `where` argument doesn't exist, create a new ServerCache with this data.
+     */
+    create: XOR<ServerCacheCreateInput, ServerCacheUncheckedCreateInput>
+    /**
+     * In case the ServerCache was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServerCacheUpdateInput, ServerCacheUncheckedUpdateInput>
+  }
+
+  /**
+   * ServerCache delete
+   */
+  export type ServerCacheDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+    /**
+     * Filter which ServerCache to delete.
+     */
+    where: ServerCacheWhereUniqueInput
+  }
+
+  /**
+   * ServerCache deleteMany
+   */
+  export type ServerCacheDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServerCaches to delete
+     */
+    where?: ServerCacheWhereInput
+    /**
+     * Limit how many ServerCaches to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServerCache.Review
+   */
+  export type ServerCache$ReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Review
+     */
+    select?: ReviewSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Review
+     */
+    omit?: ReviewOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReviewInclude<ExtArgs> | null
+    where?: ReviewWhereInput
+    orderBy?: ReviewOrderByWithRelationInput | ReviewOrderByWithRelationInput[]
+    cursor?: ReviewWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReviewScalarFieldEnum | ReviewScalarFieldEnum[]
+  }
+
+  /**
+   * ServerCache without action
+   */
+  export type ServerCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerCache
+     */
+    select?: ServerCacheSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerCache
+     */
+    omit?: ServerCacheOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerCacheInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -6897,10 +8097,21 @@ export namespace Prisma {
     serverId: 'serverId',
     rating: 'rating',
     description: 'description',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    serverCacheId: 'serverCacheId'
   };
 
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+  export const ServerCacheScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    icon: 'icon',
+    reviewId: 'reviewId'
+  };
+
+  export type ServerCacheScalarFieldEnum = (typeof ServerCacheScalarFieldEnum)[keyof typeof ServerCacheScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7306,7 +8517,9 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
+    serverCacheId?: StringFilter<"Review"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    serverCache?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }
 
   export type ReviewOrderByWithRelationInput = {
@@ -7316,7 +8529,9 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    serverCacheId?: SortOrder
     user?: UserOrderByWithRelationInput
+    serverCache?: ServerCacheOrderByWithRelationInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -7330,7 +8545,9 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
+    serverCacheId?: StringFilter<"Review"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    serverCache?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }, "id" | "userId_serverId">
 
   export type ReviewOrderByWithAggregationInput = {
@@ -7340,6 +8557,7 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    serverCacheId?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
@@ -7357,6 +8575,57 @@ export namespace Prisma {
     rating?: IntWithAggregatesFilter<"Review"> | number
     description?: StringWithAggregatesFilter<"Review"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Review"> | Date | string
+    serverCacheId?: StringWithAggregatesFilter<"Review"> | string
+  }
+
+  export type ServerCacheWhereInput = {
+    AND?: ServerCacheWhereInput | ServerCacheWhereInput[]
+    OR?: ServerCacheWhereInput[]
+    NOT?: ServerCacheWhereInput | ServerCacheWhereInput[]
+    id?: StringFilter<"ServerCache"> | string
+    name?: StringFilter<"ServerCache"> | string
+    icon?: StringFilter<"ServerCache"> | string
+    reviewId?: StringNullableFilter<"ServerCache"> | string | null
+    Review?: ReviewListRelationFilter
+  }
+
+  export type ServerCacheOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    icon?: SortOrder
+    reviewId?: SortOrderInput | SortOrder
+    Review?: ReviewOrderByRelationAggregateInput
+  }
+
+  export type ServerCacheWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ServerCacheWhereInput | ServerCacheWhereInput[]
+    OR?: ServerCacheWhereInput[]
+    NOT?: ServerCacheWhereInput | ServerCacheWhereInput[]
+    name?: StringFilter<"ServerCache"> | string
+    icon?: StringFilter<"ServerCache"> | string
+    reviewId?: StringNullableFilter<"ServerCache"> | string | null
+    Review?: ReviewListRelationFilter
+  }, "id">
+
+  export type ServerCacheOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    icon?: SortOrder
+    reviewId?: SortOrderInput | SortOrder
+    _count?: ServerCacheCountOrderByAggregateInput
+    _max?: ServerCacheMaxOrderByAggregateInput
+    _min?: ServerCacheMinOrderByAggregateInput
+  }
+
+  export type ServerCacheScalarWhereWithAggregatesInput = {
+    AND?: ServerCacheScalarWhereWithAggregatesInput | ServerCacheScalarWhereWithAggregatesInput[]
+    OR?: ServerCacheScalarWhereWithAggregatesInput[]
+    NOT?: ServerCacheScalarWhereWithAggregatesInput | ServerCacheScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServerCache"> | string
+    name?: StringWithAggregatesFilter<"ServerCache"> | string
+    icon?: StringWithAggregatesFilter<"ServerCache"> | string
+    reviewId?: StringNullableWithAggregatesFilter<"ServerCache"> | string | null
   }
 
   export type UserCreateInput = {
@@ -7705,6 +8974,7 @@ export namespace Prisma {
     description: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutReviewInput
+    serverCache: ServerCacheCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateInput = {
@@ -7714,6 +8984,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
+    serverCacheId: string
   }
 
   export type ReviewUpdateInput = {
@@ -7723,6 +8994,7 @@ export namespace Prisma {
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
+    serverCache?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
@@ -7732,6 +9004,7 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewCreateManyInput = {
@@ -7741,6 +9014,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
+    serverCacheId: string
   }
 
   export type ReviewUpdateManyMutationInput = {
@@ -7758,6 +9032,60 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serverCacheId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerCacheCreateInput = {
+    id: string
+    name: string
+    icon: string
+    reviewId?: string | null
+    Review?: ReviewCreateNestedManyWithoutServerCacheInput
+  }
+
+  export type ServerCacheUncheckedCreateInput = {
+    id: string
+    name: string
+    icon: string
+    reviewId?: string | null
+    Review?: ReviewUncheckedCreateNestedManyWithoutServerCacheInput
+  }
+
+  export type ServerCacheUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
+    Review?: ReviewUpdateManyWithoutServerCacheNestedInput
+  }
+
+  export type ServerCacheUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
+    Review?: ReviewUncheckedUpdateManyWithoutServerCacheNestedInput
+  }
+
+  export type ServerCacheCreateManyInput = {
+    id: string
+    name: string
+    icon: string
+    reviewId?: string | null
+  }
+
+  export type ServerCacheUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServerCacheUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -8081,6 +9409,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type ServerCacheScalarRelationFilter = {
+    is?: ServerCacheWhereInput
+    isNot?: ServerCacheWhereInput
+  }
+
   export type ReviewUserIdServerIdCompoundUniqueInput = {
     userId: string
     serverId: string
@@ -8093,6 +9426,7 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    serverCacheId?: SortOrder
   }
 
   export type ReviewAvgOrderByAggregateInput = {
@@ -8106,6 +9440,7 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    serverCacheId?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
@@ -8115,6 +9450,7 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
+    serverCacheId?: SortOrder
   }
 
   export type ReviewSumOrderByAggregateInput = {
@@ -8135,6 +9471,27 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type ServerCacheCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    icon?: SortOrder
+    reviewId?: SortOrder
+  }
+
+  export type ServerCacheMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    icon?: SortOrder
+    reviewId?: SortOrder
+  }
+
+  export type ServerCacheMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    icon?: SortOrder
+    reviewId?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -8317,6 +9674,12 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
+  export type ServerCacheCreateNestedOneWithoutReviewInput = {
+    create?: XOR<ServerCacheCreateWithoutReviewInput, ServerCacheUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: ServerCacheCreateOrConnectWithoutReviewInput
+    connect?: ServerCacheWhereUniqueInput
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -8331,6 +9694,56 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutReviewInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReviewInput, UserUpdateWithoutReviewInput>, UserUncheckedUpdateWithoutReviewInput>
+  }
+
+  export type ServerCacheUpdateOneRequiredWithoutReviewNestedInput = {
+    create?: XOR<ServerCacheCreateWithoutReviewInput, ServerCacheUncheckedCreateWithoutReviewInput>
+    connectOrCreate?: ServerCacheCreateOrConnectWithoutReviewInput
+    upsert?: ServerCacheUpsertWithoutReviewInput
+    connect?: ServerCacheWhereUniqueInput
+    update?: XOR<XOR<ServerCacheUpdateToOneWithWhereWithoutReviewInput, ServerCacheUpdateWithoutReviewInput>, ServerCacheUncheckedUpdateWithoutReviewInput>
+  }
+
+  export type ReviewCreateNestedManyWithoutServerCacheInput = {
+    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
+    createMany?: ReviewCreateManyServerCacheInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ReviewUncheckedCreateNestedManyWithoutServerCacheInput = {
+    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
+    createMany?: ReviewCreateManyServerCacheInputEnvelope
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ReviewUpdateManyWithoutServerCacheNestedInput = {
+    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutServerCacheInput | ReviewUpsertWithWhereUniqueWithoutServerCacheInput[]
+    createMany?: ReviewCreateManyServerCacheInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutServerCacheInput | ReviewUpdateWithWhereUniqueWithoutServerCacheInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutServerCacheInput | ReviewUpdateManyWithWhereWithoutServerCacheInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutServerCacheNestedInput = {
+    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutServerCacheInput | ReviewUpsertWithWhereUniqueWithoutServerCacheInput[]
+    createMany?: ReviewCreateManyServerCacheInputEnvelope
+    set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutServerCacheInput | ReviewUpdateWithWhereUniqueWithoutServerCacheInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutServerCacheInput | ReviewUpdateManyWithWhereWithoutServerCacheInput[]
+    deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -8583,6 +9996,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
+    serverCache: ServerCacheCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateWithoutUserInput = {
@@ -8591,6 +10005,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
+    serverCacheId: string
   }
 
   export type ReviewCreateOrConnectWithoutUserInput = {
@@ -8694,6 +10109,7 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
+    serverCacheId?: StringFilter<"Review"> | string
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -8863,6 +10279,25 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutReviewInput, UserUncheckedCreateWithoutReviewInput>
   }
 
+  export type ServerCacheCreateWithoutReviewInput = {
+    id: string
+    name: string
+    icon: string
+    reviewId?: string | null
+  }
+
+  export type ServerCacheUncheckedCreateWithoutReviewInput = {
+    id: string
+    name: string
+    icon: string
+    reviewId?: string | null
+  }
+
+  export type ServerCacheCreateOrConnectWithoutReviewInput = {
+    where: ServerCacheWhereUniqueInput
+    create: XOR<ServerCacheCreateWithoutReviewInput, ServerCacheUncheckedCreateWithoutReviewInput>
+  }
+
   export type UserUpsertWithoutReviewInput = {
     update: XOR<UserUpdateWithoutReviewInput, UserUncheckedUpdateWithoutReviewInput>
     create: XOR<UserCreateWithoutReviewInput, UserUncheckedCreateWithoutReviewInput>
@@ -8900,6 +10335,75 @@ export namespace Prisma {
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type ServerCacheUpsertWithoutReviewInput = {
+    update: XOR<ServerCacheUpdateWithoutReviewInput, ServerCacheUncheckedUpdateWithoutReviewInput>
+    create: XOR<ServerCacheCreateWithoutReviewInput, ServerCacheUncheckedCreateWithoutReviewInput>
+    where?: ServerCacheWhereInput
+  }
+
+  export type ServerCacheUpdateToOneWithWhereWithoutReviewInput = {
+    where?: ServerCacheWhereInput
+    data: XOR<ServerCacheUpdateWithoutReviewInput, ServerCacheUncheckedUpdateWithoutReviewInput>
+  }
+
+  export type ServerCacheUpdateWithoutReviewInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ServerCacheUncheckedUpdateWithoutReviewInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ReviewCreateWithoutServerCacheInput = {
+    id?: string
+    serverId: string
+    rating: number
+    description: string
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutReviewInput
+  }
+
+  export type ReviewUncheckedCreateWithoutServerCacheInput = {
+    id?: string
+    userId: string
+    serverId: string
+    rating: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type ReviewCreateOrConnectWithoutServerCacheInput = {
+    where: ReviewWhereUniqueInput
+    create: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput>
+  }
+
+  export type ReviewCreateManyServerCacheInputEnvelope = {
+    data: ReviewCreateManyServerCacheInput | ReviewCreateManyServerCacheInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReviewUpsertWithWhereUniqueWithoutServerCacheInput = {
+    where: ReviewWhereUniqueInput
+    update: XOR<ReviewUpdateWithoutServerCacheInput, ReviewUncheckedUpdateWithoutServerCacheInput>
+    create: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput>
+  }
+
+  export type ReviewUpdateWithWhereUniqueWithoutServerCacheInput = {
+    where: ReviewWhereUniqueInput
+    data: XOR<ReviewUpdateWithoutServerCacheInput, ReviewUncheckedUpdateWithoutServerCacheInput>
+  }
+
+  export type ReviewUpdateManyWithWhereWithoutServerCacheInput = {
+    where: ReviewScalarWhereInput
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutServerCacheInput>
+  }
+
   export type SessionCreateManyUserInput = {
     id: string
     expiresAt: Date | string
@@ -8931,6 +10435,7 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
+    serverCacheId: string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -9014,6 +10519,7 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serverCache?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutUserInput = {
@@ -9022,10 +10528,48 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    serverCacheId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ReviewCreateManyServerCacheInput = {
+    id?: string
+    userId: string
+    serverId: string
+    rating: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type ReviewUpdateWithoutServerCacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReviewNestedInput
+  }
+
+  export type ReviewUncheckedUpdateWithoutServerCacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    serverId?: StringFieldUpdateOperationsInput | string
+    rating?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReviewUncheckedUpdateManyWithoutServerCacheInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
     serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
