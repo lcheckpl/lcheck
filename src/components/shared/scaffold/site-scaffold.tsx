@@ -97,7 +97,7 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 	return (
 		<div className="flex min-h-screen flex-col">
 			<Navbar1 {...navbarData} />
-			<div className="p-6 py-24">{children}</div>
+			<div className="grow p-6 py-24">{children}</div>
 		</div>
 	)
 }
