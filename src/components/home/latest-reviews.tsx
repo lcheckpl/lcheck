@@ -23,24 +23,24 @@ export default async function LatestReviews() {
 						<CardHeader>
 							<Avatar>
 								<AvatarImage
-									src={review.user.image || ""}
+									src={`https://cdn.discordapp.com/icons/${review.server.id}/${review.server.icon}.png`}
 									alt="Avatar"
 								/>
-								<AvatarFallback>CN</AvatarFallback>
+								<AvatarFallback>?</AvatarFallback>
 							</Avatar>
-							<CardTitle>{review.user.name}</CardTitle>
+							<CardTitle>{review.server.name}</CardTitle>
 							<CardDescription>
 								{review.createdAt.toLocaleDateString()}
 							</CardDescription>
 						</CardHeader>
-						<CardContent>
+						<CardContent className="grow">
 							<p className="text-muted-foreground">
 								{review.description}
 							</p>
 						</CardContent>
 						<Separator />
 						<CardFooter>
-							<p>Serwer: {review.server.name}</p>
+							<p>Autor recenzji: {review.user.name}</p>
 						</CardFooter>
 					</Card>
 				))}
