@@ -5862,7 +5862,6 @@ export namespace Prisma {
     rating: number | null
     description: string | null
     createdAt: Date | null
-    serverCacheId: string | null
   }
 
   export type ReviewMaxAggregateOutputType = {
@@ -5872,7 +5871,6 @@ export namespace Prisma {
     rating: number | null
     description: string | null
     createdAt: Date | null
-    serverCacheId: string | null
   }
 
   export type ReviewCountAggregateOutputType = {
@@ -5882,7 +5880,6 @@ export namespace Prisma {
     rating: number
     description: number
     createdAt: number
-    serverCacheId: number
     _all: number
   }
 
@@ -5902,7 +5899,6 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
-    serverCacheId?: true
   }
 
   export type ReviewMaxAggregateInputType = {
@@ -5912,7 +5908,6 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
-    serverCacheId?: true
   }
 
   export type ReviewCountAggregateInputType = {
@@ -5922,7 +5917,6 @@ export namespace Prisma {
     rating?: true
     description?: true
     createdAt?: true
-    serverCacheId?: true
     _all?: true
   }
 
@@ -6019,7 +6013,6 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt: Date
-    serverCacheId: string
     _count: ReviewCountAggregateOutputType | null
     _avg: ReviewAvgAggregateOutputType | null
     _sum: ReviewSumAggregateOutputType | null
@@ -6048,9 +6041,8 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
-    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6060,9 +6052,8 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
-    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6072,9 +6063,8 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
-    serverCacheId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["review"]>
 
   export type ReviewSelectScalar = {
@@ -6084,28 +6074,27 @@ export namespace Prisma {
     rating?: boolean
     description?: boolean
     createdAt?: boolean
-    serverCacheId?: boolean
   }
 
-  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "serverId" | "rating" | "description" | "createdAt" | "serverCacheId", ExtArgs["result"]["review"]>
+  export type ReviewOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "serverId" | "rating" | "description" | "createdAt", ExtArgs["result"]["review"]>
   export type ReviewInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
   export type ReviewIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-    serverCache?: boolean | ServerCacheDefaultArgs<ExtArgs>
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
 
   export type $ReviewPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Review"
     objects: {
       user: Prisma.$UserPayload<ExtArgs>
-      serverCache: Prisma.$ServerCachePayload<ExtArgs>
+      server: Prisma.$ServerCachePayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6114,7 +6103,6 @@ export namespace Prisma {
       rating: number
       description: string
       createdAt: Date
-      serverCacheId: string
     }, ExtArgs["result"]["review"]>
     composites: {}
   }
@@ -6510,7 +6498,7 @@ export namespace Prisma {
   export interface Prisma__ReviewClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    serverCache<T extends ServerCacheDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServerCacheDefaultArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    server<T extends ServerCacheDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServerCacheDefaultArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6546,7 +6534,6 @@ export namespace Prisma {
     readonly rating: FieldRef<"Review", 'Int'>
     readonly description: FieldRef<"Review", 'String'>
     readonly createdAt: FieldRef<"Review", 'DateTime'>
-    readonly serverCacheId: FieldRef<"Review", 'String'>
   }
     
 
@@ -6975,21 +6962,18 @@ export namespace Prisma {
     id: string | null
     name: string | null
     icon: string | null
-    reviewId: string | null
   }
 
   export type ServerCacheMaxAggregateOutputType = {
     id: string | null
     name: string | null
     icon: string | null
-    reviewId: string | null
   }
 
   export type ServerCacheCountAggregateOutputType = {
     id: number
     name: number
     icon: number
-    reviewId: number
     _all: number
   }
 
@@ -6998,21 +6982,18 @@ export namespace Prisma {
     id?: true
     name?: true
     icon?: true
-    reviewId?: true
   }
 
   export type ServerCacheMaxAggregateInputType = {
     id?: true
     name?: true
     icon?: true
-    reviewId?: true
   }
 
   export type ServerCacheCountAggregateInputType = {
     id?: true
     name?: true
     icon?: true
-    reviewId?: true
     _all?: true
   }
 
@@ -7092,7 +7073,6 @@ export namespace Prisma {
     id: string
     name: string
     icon: string
-    reviewId: string | null
     _count: ServerCacheCountAggregateOutputType | null
     _min: ServerCacheMinAggregateOutputType | null
     _max: ServerCacheMaxAggregateOutputType | null
@@ -7116,7 +7096,6 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     icon?: boolean
-    reviewId?: boolean
     Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
     _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serverCache"]>
@@ -7125,24 +7104,21 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     icon?: boolean
-    reviewId?: boolean
   }, ExtArgs["result"]["serverCache"]>
 
   export type ServerCacheSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
     icon?: boolean
-    reviewId?: boolean
   }, ExtArgs["result"]["serverCache"]>
 
   export type ServerCacheSelectScalar = {
     id?: boolean
     name?: boolean
     icon?: boolean
-    reviewId?: boolean
   }
 
-  export type ServerCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "icon" | "reviewId", ExtArgs["result"]["serverCache"]>
+  export type ServerCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "icon", ExtArgs["result"]["serverCache"]>
   export type ServerCacheInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
     _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
@@ -7159,7 +7135,6 @@ export namespace Prisma {
       id: string
       name: string
       icon: string
-      reviewId: string | null
     }, ExtArgs["result"]["serverCache"]>
     composites: {}
   }
@@ -7587,7 +7562,6 @@ export namespace Prisma {
     readonly id: FieldRef<"ServerCache", 'String'>
     readonly name: FieldRef<"ServerCache", 'String'>
     readonly icon: FieldRef<"ServerCache", 'String'>
-    readonly reviewId: FieldRef<"ServerCache", 'String'>
   }
     
 
@@ -8097,8 +8071,7 @@ export namespace Prisma {
     serverId: 'serverId',
     rating: 'rating',
     description: 'description',
-    createdAt: 'createdAt',
-    serverCacheId: 'serverCacheId'
+    createdAt: 'createdAt'
   };
 
   export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
@@ -8107,8 +8080,7 @@ export namespace Prisma {
   export const ServerCacheScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    icon: 'icon',
-    reviewId: 'reviewId'
+    icon: 'icon'
   };
 
   export type ServerCacheScalarFieldEnum = (typeof ServerCacheScalarFieldEnum)[keyof typeof ServerCacheScalarFieldEnum]
@@ -8517,9 +8489,8 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
-    serverCacheId?: StringFilter<"Review"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    serverCache?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
+    server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }
 
   export type ReviewOrderByWithRelationInput = {
@@ -8529,9 +8500,8 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-    serverCacheId?: SortOrder
     user?: UserOrderByWithRelationInput
-    serverCache?: ServerCacheOrderByWithRelationInput
+    server?: ServerCacheOrderByWithRelationInput
   }
 
   export type ReviewWhereUniqueInput = Prisma.AtLeast<{
@@ -8545,9 +8515,8 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
-    serverCacheId?: StringFilter<"Review"> | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    serverCache?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
+    server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }, "id" | "userId_serverId">
 
   export type ReviewOrderByWithAggregationInput = {
@@ -8557,7 +8526,6 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-    serverCacheId?: SortOrder
     _count?: ReviewCountOrderByAggregateInput
     _avg?: ReviewAvgOrderByAggregateInput
     _max?: ReviewMaxOrderByAggregateInput
@@ -8575,7 +8543,6 @@ export namespace Prisma {
     rating?: IntWithAggregatesFilter<"Review"> | number
     description?: StringWithAggregatesFilter<"Review"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Review"> | Date | string
-    serverCacheId?: StringWithAggregatesFilter<"Review"> | string
   }
 
   export type ServerCacheWhereInput = {
@@ -8585,7 +8552,6 @@ export namespace Prisma {
     id?: StringFilter<"ServerCache"> | string
     name?: StringFilter<"ServerCache"> | string
     icon?: StringFilter<"ServerCache"> | string
-    reviewId?: StringNullableFilter<"ServerCache"> | string | null
     Review?: ReviewListRelationFilter
   }
 
@@ -8593,7 +8559,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
-    reviewId?: SortOrderInput | SortOrder
     Review?: ReviewOrderByRelationAggregateInput
   }
 
@@ -8604,7 +8569,6 @@ export namespace Prisma {
     NOT?: ServerCacheWhereInput | ServerCacheWhereInput[]
     name?: StringFilter<"ServerCache"> | string
     icon?: StringFilter<"ServerCache"> | string
-    reviewId?: StringNullableFilter<"ServerCache"> | string | null
     Review?: ReviewListRelationFilter
   }, "id">
 
@@ -8612,7 +8576,6 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
-    reviewId?: SortOrderInput | SortOrder
     _count?: ServerCacheCountOrderByAggregateInput
     _max?: ServerCacheMaxOrderByAggregateInput
     _min?: ServerCacheMinOrderByAggregateInput
@@ -8625,7 +8588,6 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ServerCache"> | string
     name?: StringWithAggregatesFilter<"ServerCache"> | string
     icon?: StringWithAggregatesFilter<"ServerCache"> | string
-    reviewId?: StringNullableWithAggregatesFilter<"ServerCache"> | string | null
   }
 
   export type UserCreateInput = {
@@ -8969,12 +8931,11 @@ export namespace Prisma {
 
   export type ReviewCreateInput = {
     id?: string
-    serverId: string
     rating: number
     description: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutReviewInput
-    serverCache: ServerCacheCreateNestedOneWithoutReviewInput
+    server: ServerCacheCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateInput = {
@@ -8984,17 +8945,15 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
-    serverCacheId: string
   }
 
   export type ReviewUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
-    serverCache?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
+    server?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateInput = {
@@ -9004,7 +8963,6 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewCreateManyInput = {
@@ -9014,12 +8972,10 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
-    serverCacheId: string
   }
 
   export type ReviewUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9032,60 +8988,52 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServerCacheCreateInput = {
     id: string
     name: string
     icon: string
-    reviewId?: string | null
-    Review?: ReviewCreateNestedManyWithoutServerCacheInput
+    Review?: ReviewCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheUncheckedCreateInput = {
     id: string
     name: string
     icon: string
-    reviewId?: string | null
-    Review?: ReviewUncheckedCreateNestedManyWithoutServerCacheInput
+    Review?: ReviewUncheckedCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    Review?: ReviewUpdateManyWithoutServerCacheNestedInput
+    Review?: ReviewUpdateManyWithoutServerNestedInput
   }
 
   export type ServerCacheUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
-    Review?: ReviewUncheckedUpdateManyWithoutServerCacheNestedInput
+    Review?: ReviewUncheckedUpdateManyWithoutServerNestedInput
   }
 
   export type ServerCacheCreateManyInput = {
     id: string
     name: string
     icon: string
-    reviewId?: string | null
   }
 
   export type ServerCacheUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServerCacheUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9426,7 +9374,6 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-    serverCacheId?: SortOrder
   }
 
   export type ReviewAvgOrderByAggregateInput = {
@@ -9440,7 +9387,6 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-    serverCacheId?: SortOrder
   }
 
   export type ReviewMinOrderByAggregateInput = {
@@ -9450,7 +9396,6 @@ export namespace Prisma {
     rating?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
-    serverCacheId?: SortOrder
   }
 
   export type ReviewSumOrderByAggregateInput = {
@@ -9477,21 +9422,18 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
-    reviewId?: SortOrder
   }
 
   export type ServerCacheMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
-    reviewId?: SortOrder
   }
 
   export type ServerCacheMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
-    reviewId?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -9704,45 +9646,45 @@ export namespace Prisma {
     update?: XOR<XOR<ServerCacheUpdateToOneWithWhereWithoutReviewInput, ServerCacheUpdateWithoutReviewInput>, ServerCacheUncheckedUpdateWithoutReviewInput>
   }
 
-  export type ReviewCreateNestedManyWithoutServerCacheInput = {
-    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
-    createMany?: ReviewCreateManyServerCacheInputEnvelope
+  export type ReviewCreateNestedManyWithoutServerInput = {
+    create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
+    createMany?: ReviewCreateManyServerInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type ReviewUncheckedCreateNestedManyWithoutServerCacheInput = {
-    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
-    createMany?: ReviewCreateManyServerCacheInputEnvelope
+  export type ReviewUncheckedCreateNestedManyWithoutServerInput = {
+    create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
+    createMany?: ReviewCreateManyServerInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
-  export type ReviewUpdateManyWithoutServerCacheNestedInput = {
-    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
-    upsert?: ReviewUpsertWithWhereUniqueWithoutServerCacheInput | ReviewUpsertWithWhereUniqueWithoutServerCacheInput[]
-    createMany?: ReviewCreateManyServerCacheInputEnvelope
+  export type ReviewUpdateManyWithoutServerNestedInput = {
+    create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutServerInput | ReviewUpsertWithWhereUniqueWithoutServerInput[]
+    createMany?: ReviewCreateManyServerInputEnvelope
     set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    update?: ReviewUpdateWithWhereUniqueWithoutServerCacheInput | ReviewUpdateWithWhereUniqueWithoutServerCacheInput[]
-    updateMany?: ReviewUpdateManyWithWhereWithoutServerCacheInput | ReviewUpdateManyWithWhereWithoutServerCacheInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutServerInput | ReviewUpdateWithWhereUniqueWithoutServerInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutServerInput | ReviewUpdateManyWithWhereWithoutServerInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type ReviewUncheckedUpdateManyWithoutServerCacheNestedInput = {
-    create?: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput> | ReviewCreateWithoutServerCacheInput[] | ReviewUncheckedCreateWithoutServerCacheInput[]
-    connectOrCreate?: ReviewCreateOrConnectWithoutServerCacheInput | ReviewCreateOrConnectWithoutServerCacheInput[]
-    upsert?: ReviewUpsertWithWhereUniqueWithoutServerCacheInput | ReviewUpsertWithWhereUniqueWithoutServerCacheInput[]
-    createMany?: ReviewCreateManyServerCacheInputEnvelope
+  export type ReviewUncheckedUpdateManyWithoutServerNestedInput = {
+    create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
+    upsert?: ReviewUpsertWithWhereUniqueWithoutServerInput | ReviewUpsertWithWhereUniqueWithoutServerInput[]
+    createMany?: ReviewCreateManyServerInputEnvelope
     set?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     disconnect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     delete?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
-    update?: ReviewUpdateWithWhereUniqueWithoutServerCacheInput | ReviewUpdateWithWhereUniqueWithoutServerCacheInput[]
-    updateMany?: ReviewUpdateManyWithWhereWithoutServerCacheInput | ReviewUpdateManyWithWhereWithoutServerCacheInput[]
+    update?: ReviewUpdateWithWhereUniqueWithoutServerInput | ReviewUpdateWithWhereUniqueWithoutServerInput[]
+    updateMany?: ReviewUpdateManyWithWhereWithoutServerInput | ReviewUpdateManyWithWhereWithoutServerInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
@@ -9992,11 +9934,10 @@ export namespace Prisma {
 
   export type ReviewCreateWithoutUserInput = {
     id?: string
-    serverId: string
     rating: number
     description: string
     createdAt?: Date | string
-    serverCache: ServerCacheCreateNestedOneWithoutReviewInput
+    server: ServerCacheCreateNestedOneWithoutReviewInput
   }
 
   export type ReviewUncheckedCreateWithoutUserInput = {
@@ -10005,7 +9946,6 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
-    serverCacheId: string
   }
 
   export type ReviewCreateOrConnectWithoutUserInput = {
@@ -10109,7 +10049,6 @@ export namespace Prisma {
     rating?: IntFilter<"Review"> | number
     description?: StringFilter<"Review"> | string
     createdAt?: DateTimeFilter<"Review"> | Date | string
-    serverCacheId?: StringFilter<"Review"> | string
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -10283,14 +10222,12 @@ export namespace Prisma {
     id: string
     name: string
     icon: string
-    reviewId?: string | null
   }
 
   export type ServerCacheUncheckedCreateWithoutReviewInput = {
     id: string
     name: string
     icon: string
-    reviewId?: string | null
   }
 
   export type ServerCacheCreateOrConnectWithoutReviewInput = {
@@ -10350,58 +10287,54 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type ServerCacheUncheckedUpdateWithoutReviewInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
-    reviewId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type ReviewCreateWithoutServerCacheInput = {
+  export type ReviewCreateWithoutServerInput = {
     id?: string
-    serverId: string
     rating: number
     description: string
     createdAt?: Date | string
     user: UserCreateNestedOneWithoutReviewInput
   }
 
-  export type ReviewUncheckedCreateWithoutServerCacheInput = {
+  export type ReviewUncheckedCreateWithoutServerInput = {
     id?: string
     userId: string
-    serverId: string
     rating: number
     description: string
     createdAt?: Date | string
   }
 
-  export type ReviewCreateOrConnectWithoutServerCacheInput = {
+  export type ReviewCreateOrConnectWithoutServerInput = {
     where: ReviewWhereUniqueInput
-    create: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput>
+    create: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput>
   }
 
-  export type ReviewCreateManyServerCacheInputEnvelope = {
-    data: ReviewCreateManyServerCacheInput | ReviewCreateManyServerCacheInput[]
+  export type ReviewCreateManyServerInputEnvelope = {
+    data: ReviewCreateManyServerInput | ReviewCreateManyServerInput[]
     skipDuplicates?: boolean
   }
 
-  export type ReviewUpsertWithWhereUniqueWithoutServerCacheInput = {
+  export type ReviewUpsertWithWhereUniqueWithoutServerInput = {
     where: ReviewWhereUniqueInput
-    update: XOR<ReviewUpdateWithoutServerCacheInput, ReviewUncheckedUpdateWithoutServerCacheInput>
-    create: XOR<ReviewCreateWithoutServerCacheInput, ReviewUncheckedCreateWithoutServerCacheInput>
+    update: XOR<ReviewUpdateWithoutServerInput, ReviewUncheckedUpdateWithoutServerInput>
+    create: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput>
   }
 
-  export type ReviewUpdateWithWhereUniqueWithoutServerCacheInput = {
+  export type ReviewUpdateWithWhereUniqueWithoutServerInput = {
     where: ReviewWhereUniqueInput
-    data: XOR<ReviewUpdateWithoutServerCacheInput, ReviewUncheckedUpdateWithoutServerCacheInput>
+    data: XOR<ReviewUpdateWithoutServerInput, ReviewUncheckedUpdateWithoutServerInput>
   }
 
-  export type ReviewUpdateManyWithWhereWithoutServerCacheInput = {
+  export type ReviewUpdateManyWithWhereWithoutServerInput = {
     where: ReviewScalarWhereInput
-    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutServerCacheInput>
+    data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutServerInput>
   }
 
   export type SessionCreateManyUserInput = {
@@ -10435,7 +10368,6 @@ export namespace Prisma {
     rating: number
     description: string
     createdAt?: Date | string
-    serverCacheId: string
   }
 
   export type SessionUpdateWithoutUserInput = {
@@ -10515,11 +10447,10 @@ export namespace Prisma {
 
   export type ReviewUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serverCache?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
+    server?: ServerCacheUpdateOneRequiredWithoutReviewNestedInput
   }
 
   export type ReviewUncheckedUpdateWithoutUserInput = {
@@ -10528,7 +10459,6 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
   export type ReviewUncheckedUpdateManyWithoutUserInput = {
@@ -10537,40 +10467,35 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    serverCacheId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type ReviewCreateManyServerCacheInput = {
+  export type ReviewCreateManyServerInput = {
     id?: string
     userId: string
-    serverId: string
     rating: number
     description: string
     createdAt?: Date | string
   }
 
-  export type ReviewUpdateWithoutServerCacheInput = {
+  export type ReviewUpdateWithoutServerInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutReviewNestedInput
   }
 
-  export type ReviewUncheckedUpdateWithoutServerCacheInput = {
+  export type ReviewUncheckedUpdateWithoutServerInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ReviewUncheckedUpdateManyWithoutServerCacheInput = {
+  export type ReviewUncheckedUpdateManyWithoutServerInput = {
     id?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

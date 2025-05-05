@@ -66,5 +66,24 @@ export async function fetchGuilds(): Promise<IFetchGuilds> {
 			admin: true,
 		}))
 
+	await prisma.$transaction(
+		mappedGuilds.map((guild) =>
+			prisma.serverCache.upsert({
+				create: {
+					id: guild.id,
+					name: guild.name,
+					icon: guild.icon,
+				},
+				update: {
+					name: guild.name,
+					icon: guild.icon,
+				},
+				where: {
+					id: guild.id,
+				},
+			}),
+		),
+	)
+
 	return { status: result.status, guilds: mappedGuilds }
 }
