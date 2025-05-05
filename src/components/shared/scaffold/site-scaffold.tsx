@@ -1,5 +1,6 @@
+import { DiscordIcon } from "@/components/ui/icons"
 import { Navbar1 } from "@/components/ui/navbar-top"
-import { Book, Trees, Sunset, Zap } from "lucide-react"
+import { Book, Trees, Zap, Star, Handshake } from "lucide-react"
 import { ReactNode } from "react"
 
 export function SiteScaffold({ children }: { children: ReactNode }) {
@@ -16,74 +17,64 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 				url: "/",
 			},
 			{
-				title: "Products",
+				title: "Społeczność",
 				url: "#",
 				items: [
 					{
-						title: "Blog",
-						description:
-							"The latest industry news, updates, and info",
-						icon: <Book className="size-5 shrink-0" />,
-						url: "/blog",
+						title: "Opinie",
+						description: "Wszystkie opinie wystawione przez was",
+						icon: <Star className="size-5 shrink-0" />,
+						url: "/reviewsX",
 					},
 					{
-						title: "Company",
+						title: "Discord",
 						description:
-							"Our mission is to innovate and empower the world",
-						icon: <Trees className="size-5 shrink-0" />,
-						url: "/company",
+							"Nasz serwer discord na którym możesz uzyskać pomoc",
+						icon: <DiscordIcon className="size-5 shrink-0" />,
+						url: "/discord",
 					},
 					{
-						title: "Careers",
+						title: "Dołącz do nas",
 						description:
-							"Browse job listing and discover our workspace",
-						icon: <Sunset className="size-5 shrink-0" />,
+							"Aktywnie szukamy ludzi, którzy są w stanie nam pomóc w prowadzeniu strony",
+						icon: <Handshake className="size-5 shrink-0" />,
 						url: "/careers",
 					},
 					{
-						title: "Support",
+						title: "Blog",
 						description:
-							"Get in touch with our support team or visit our community forums",
-						icon: <Zap className="size-5 shrink-0" />,
-						url: "/support",
+							"Regularnie wrzucamy tutaj informacje o aktualizacjach na stronie",
+						icon: <Book className="size-5 shrink-0" />,
+						url: "/blog",
 					},
 				],
 			},
 			{
-				title: "Resources",
+				title: "Zasoby",
 				url: "#",
 				items: [
 					{
-						title: "Help Center",
-						description: "Get all the answers you need right here",
+						title: "Centrum Pomocy",
+						description: "TODO bo nie mam pomysłu",
 						icon: <Zap className="size-5 shrink-0" />,
 						url: "/help",
 					},
 					{
-						title: "Contact Us",
-						description:
-							"We are here to help you with any questions you have",
-						icon: <Sunset className="size-5 shrink-0" />,
-						url: "/contact",
-					},
-					{
 						title: "Status",
-						description:
-							"Check the current status of our services and APIs",
+						description: "Sprawdź status naszych systemów",
 						icon: <Trees className="size-5 shrink-0" />,
 						url: "/status",
 					},
 					{
-						title: "Terms of Service",
-						description:
-							"Our terms and conditions for using our services",
+						title: "Regulamin i polityka prywatności",
+						description: "w sumie nie wiem czy to dodam wiec TODO",
 						icon: <Book className="size-5 shrink-0" />,
 						url: "/terms",
 					},
 				],
 			},
 			{
-				title: "Pricing",
+				title: "Cennik",
 				url: "/pricing",
 			},
 			{
