@@ -21,7 +21,7 @@ export default async function LatestReviews() {
 	})
 	return (
 		<div className="flex flex-col gap-16">
-			<h1>Najnowsze recenzje</h1>
+			<h1>Najnowsze opinie</h1>
 			<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
 				{reviews.map((review) => (
 					<Card key={review.id}>
@@ -50,7 +50,7 @@ export default async function LatestReviews() {
 						</CardContent>
 						<Separator />
 						<CardFooter>
-							<p>Autor recenzji: {review.user.name}</p>
+							<p>Autor opini: {review.user.name}</p>
 						</CardFooter>
 					</Card>
 				))}
