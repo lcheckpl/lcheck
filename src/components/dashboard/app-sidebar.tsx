@@ -1,18 +1,9 @@
 "use client"
 
 import * as React from "react"
-import {
-	BookOpen,
-	Bot,
-	Frame,
-	Map,
-	PieChart,
-	Settings2,
-	SquareTerminal,
-} from "lucide-react"
+import { BookOpen, Bot, Settings2, SquareTerminal, Star } from "lucide-react"
 
 import { NavMain } from "@/components/dashboard/nav-main"
-import { NavProjects } from "@/components/dashboard/nav-projects"
 import { NavUser } from "@/components/dashboard/nav-user"
 import { TeamSwitcher } from "@/components/dashboard/team-switcher"
 import {
@@ -24,118 +15,83 @@ import {
 } from "@/components/ui/sidebar"
 
 const data = {
-	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
-	},
 	navMain: [
 		{
-			title: "Playground",
+			title: "Opinie",
 			url: "#",
-			icon: SquareTerminal,
+			icon: Star,
 			isActive: true,
 			items: [
 				{
-					title: "History",
+					title: "Przegląd",
 					url: "#",
 				},
 				{
-					title: "Starred",
+					title: "Zarządzaj",
 					url: "#",
 				},
 				{
-					title: "Settings",
+					title: "Logi",
 					url: "#",
 				},
 			],
 		},
 		{
-			title: "Models",
+			title: "Webhook",
 			url: "#",
-			icon: Bot,
+			icon: SquareTerminal,
+
 			items: [
 				{
-					title: "Genesis",
+					title: "Ustawienia",
 					url: "#",
 				},
 				{
-					title: "Explorer",
+					title: "Statystyki",
 					url: "#",
 				},
 				{
-					title: "Quantum",
+					title: "Logi",
 					url: "#",
 				},
 			],
 		},
 		{
-			title: "Documentation",
+			title: "Dokumentacja",
 			url: "#",
 			icon: BookOpen,
 			items: [
 				{
-					title: "Introduction",
+					title: "Podstawy",
 					url: "#",
 				},
 				{
-					title: "Get Started",
+					title: "Konfiguracja webhooka",
 					url: "#",
 				},
 				{
-					title: "Tutorials",
+					title: "Uprawnienia",
 					url: "#",
 				},
 				{
-					title: "Changelog",
+					title: "Profil serwera",
 					url: "#",
 				},
 			],
-		},
-		{
-			title: "Settings",
-			url: "#",
-			icon: Settings2,
-			items: [
-				{
-					title: "General",
-					url: "#",
-				},
-				{
-					title: "Team",
-					url: "#",
-				},
-				{
-					title: "Billing",
-					url: "#",
-				},
-				{
-					title: "Limits",
-					url: "#",
-				},
-			],
-		},
-	],
-	projects: [
-		{
-			name: "Design Engineering",
-			url: "#",
-			icon: Frame,
-		},
-		{
-			name: "Sales & Marketing",
-			url: "#",
-			icon: PieChart,
-		},
-		{
-			name: "Travel",
-			url: "#",
-			icon: Map,
 		},
 	],
 }
+interface User {
+	name: string
+	email: string
+	avatar: string
+}
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+	user: User
+}
+
+export function AppSidebar({ ...props }: AppSidebarProps) {
 	return (
 		<Sidebar collapsible="icon" {...props}>
 			<SidebarHeader>
@@ -143,10 +99,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
-				<NavProjects projects={data.projects} />
 			</SidebarContent>
 			<SidebarFooter>
-				<NavUser user={data.user} />
+				<NavUser user={props.user} />
 			</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>
