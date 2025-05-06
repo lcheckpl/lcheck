@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { BookOpen, Bot, Settings2, SquareTerminal, Star } from "lucide-react"
+import { BookOpen, SquareTerminal, Star } from "lucide-react"
 
 import { NavMain } from "@/components/dashboard/nav-main"
 import { NavUser } from "@/components/dashboard/nav-user"
