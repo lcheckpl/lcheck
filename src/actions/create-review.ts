@@ -3,6 +3,7 @@
 import { getSession } from "@/lib/auth"
 import { prisma } from "@/lib/prisma"
 import { reportFormSchema } from "@/schema/report-schema"
+import { revalidatePath } from "next/cache"
 import { z } from "zod"
 
 export async function createReview(data: z.infer<typeof reportFormSchema>) {
@@ -30,6 +31,7 @@ export async function createReview(data: z.infer<typeof reportFormSchema>) {
 				userId: session.user.id,
 			},
 		})
+		revalidatePath("/")
 	} catch {
 		return {
 			error: true,
