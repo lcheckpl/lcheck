@@ -9,10 +9,15 @@ import {
 	CardTitle,
 } from "../ui/card"
 import { Separator } from "../ui/separator"
+import { Rating, RatingButton } from "../ui/rating"
 
 export default async function LatestReviews() {
 	const reviews = await prisma.review.findMany({
 		include: { user: true, server: true },
+		take: 6,
+		orderBy: {
+			createdAt: "desc",
+		},
 	})
 	return (
 		<div className="flex flex-col gap-16">
@@ -34,6 +39,11 @@ export default async function LatestReviews() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent className="grow">
+							<Rating value={review.rating} readOnly>
+								{Array.from({ length: 5 }).map((_, index) => (
+									<RatingButton key={index} />
+								))}
+							</Rating>
 							<p className="text-muted-foreground">
 								{review.description}
 							</p>
