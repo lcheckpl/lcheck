@@ -5,7 +5,7 @@ import { fetchGuilds } from "@/lib/fetch-guilds"
 
 export default async function ReportPage() {
 	await requireAuth()
-	const servers = await fetchGuilds()
+	const servers = await fetchGuilds(true)
 	return (
 		<SiteScaffold>
 			<div className="mx-auto flex max-w-5xl flex-col gap-18">

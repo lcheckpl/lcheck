@@ -16,7 +16,9 @@ export interface IFetchGuilds {
 	guilds: UserGuild[]
 }
 
-export async function fetchGuilds(): Promise<IFetchGuilds> {
+export async function fetchGuilds(
+	returnAllGuilds?: boolean,
+): Promise<IFetchGuilds> {
 	const session = await getSession()
 
 	const user = await prisma.user.findFirst({
@@ -60,7 +62,9 @@ export async function fetchGuilds(): Promise<IFetchGuilds> {
 	const mappedGuilds: UserGuild[] = json
 		.filter(
 			(item) =>
-				calculate("ADMINISTRATOR", item.permissions) || item.owner,
+				calculate("ADMINISTRATOR", item.permissions) ||
+				item.owner ||
+				returnAllGuilds,
 		)
 		.map((item) => ({
 			id: item.id,
