@@ -3,7 +3,7 @@ name: Zgłoszenie błędu
 about: Zgłoś błąd który zaobserwowałeś na stronie, aby pomóc nam się rozwijać
 title: "[BUG]"
 labels: bug
-assignees: JestemKamil
+assignees: ''
 
 ---
 
