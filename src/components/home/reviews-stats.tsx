@@ -16,8 +16,8 @@ export default async function ReviewsStats() {
 			name: "Zaawansowany dashboard",
 			description: `Jesteś właścicielem serwera? 
 			Udostępniamy Ci w pełni za darmo zaawansowany dashboard w którym możesz przeglądać statystyki, skonfigurować webhooka i wiele więcej`,
-			href: "/",
-			cta: "Learn more",
+			href: "/dashboard",
+			cta: "Przejdź do panelu",
 			background: <></>,
 			className:
 				"lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3",
@@ -27,8 +27,8 @@ export default async function ReviewsStats() {
 			name: "Szanujemy twoje zdanie",
 			description:
 				"Masz prawo do wyrażenia swojej opinii na temat dowolnego serwera",
-			href: "/",
-			cta: "Learn more",
+			href: "/report",
+			cta: "Wystaw opinie",
 			background: <></>,
 
 			className:
@@ -39,8 +39,9 @@ export default async function ReviewsStats() {
 			name: "Open Source",
 			description:
 				"Kod jest dostępny na naszym githubie - każdy może przyczynić się do rozwoju strony poprzez pull request",
-			href: "/",
-			cta: "Learn more",
+			href: "https://github.com/lcheckpl/lcheck",
+			cta: "Nasz github",
+			newTab: true,
 			background: <></>,
 
 			className:
@@ -51,8 +52,9 @@ export default async function ReviewsStats() {
 			name: "Support",
 			description:
 				"Oferujemy darmowe wsparcie techniczne, a jeśli znalazłeś błąd to cię nawet nagrodzimy",
-			href: "/",
-			cta: "Learn more",
+			href: "https://discord.gg/BfH8xFUVNR",
+			newTab: true,
+			cta: "Nasz discord",
 			background: <></>,
 
 			className:
@@ -63,8 +65,8 @@ export default async function ReviewsStats() {
 			name: "Bezpieczeństwo",
 			description:
 				"Każda zmieniona linijka w kodzie jest weryfikowana przez automatyczne systemy, a aktualizacje są dokładnie testowane",
-			href: "/",
-			cta: "Learn more",
+			href: "https://github.com/lcheckpl/lcheck/issues",
+			cta: "Zgłoś błąd",
 			background: <></>,
 			className:
 				"lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4",
