@@ -2,7 +2,7 @@
 name: Propozycja
 about: Zasugeruj co możemy zmienić na naszej stronie
 title: ''
-labels: bug, enhancement
+labels: enhancement
 assignees: ''
 
 ---
