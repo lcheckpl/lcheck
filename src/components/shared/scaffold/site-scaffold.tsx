@@ -1,5 +1,6 @@
 import { DiscordIcon } from "@/components/ui/icons"
 import { Navbar1 } from "@/components/ui/navbar-top"
+import { Separator } from "@/components/ui/separator"
 import { Book, Trees, Zap, Star, Handshake } from "lucide-react"
 import { ReactNode } from "react"
 
@@ -7,7 +8,7 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 	const navbarData = {
 		logo: {
 			url: "/",
-			src: "https://www.shadcnblocks.com/images/block/block-1.svg",
+			src: "/logo.webp",
 			alt: "lcheck.pl",
 			title: "lcheck.pl",
 		},
@@ -74,10 +75,6 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 				],
 			},
 			{
-				title: "Cennik",
-				url: "/pricing",
-			},
-			{
 				title: "Blog",
 				url: "/blog",
 			},
@@ -96,7 +93,10 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 
 	return (
 		<div className="flex min-h-screen flex-col">
-			<Navbar1 {...navbarData} />
+			<div className="sticky top-0 z-50">
+				<Navbar1 {...navbarData} />
+				<Separator className="sticky top-0" />
+			</div>
 			<div className="grow p-6 py-24">{children}</div>
 		</div>
 	)
