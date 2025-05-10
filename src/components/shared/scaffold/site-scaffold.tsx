@@ -87,7 +87,7 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 		],
 		auth: {
 			login: { text: "Panel", url: "/dashboard" },
-			signup: { text: "Nowe zgłoszenie", url: "/report" },
+			signup: { text: "Wystaw opinie", url: "/report" },
 		},
 	}
 
