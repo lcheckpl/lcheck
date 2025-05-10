@@ -9,7 +9,7 @@ export default async function ReportPage() {
 	return (
 		<SiteScaffold>
 			<div className="mx-auto flex max-w-5xl flex-col gap-18">
-				<h1>Nowe zgłoszenie</h1>
+				<h1>Nowa opinia</h1>
 				<ReportForm servers={servers} />
 			</div>
 		</SiteScaffold>

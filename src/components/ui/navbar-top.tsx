@@ -153,7 +153,7 @@ const Navbar1 = ({
 	},
 }: Navbar1Props) => {
 	return (
-		<section className="py-4">
+		<section className="bg-background p-4">
 			<div className="container">
 				<nav className="hidden justify-between lg:flex">
 					<div className="flex items-center gap-6">
