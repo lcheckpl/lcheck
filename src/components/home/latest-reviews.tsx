@@ -25,18 +25,20 @@ export default async function LatestReviews() {
 			<div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
 				{reviews.map((review) => (
 					<Card key={review.id}>
-						<CardHeader>
-							<Avatar>
+						<CardHeader className="flex flex-row items-center gap-4">
+							<Avatar className="size-10">
 								<AvatarImage
 									src={`https://cdn.discordapp.com/icons/${review.server.id}/${review.server.icon}.png`}
 									alt="Avatar"
 								/>
 								<AvatarFallback>?</AvatarFallback>
 							</Avatar>
-							<CardTitle>{review.server.name}</CardTitle>
-							<CardDescription>
-								{review.createdAt.toLocaleDateString()}
-							</CardDescription>
+							<div className="space-y-1.5">
+								<CardTitle>{review.server.name}</CardTitle>
+								<CardDescription>
+									{review.createdAt.toLocaleDateString()}
+								</CardDescription>
+							</div>
 						</CardHeader>
 						<CardContent className="grow">
 							<Rating value={review.rating} readOnly>
