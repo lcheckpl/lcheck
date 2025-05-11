@@ -25,8 +25,11 @@ import {
 import { IFetchGuilds } from "@/lib/fetch-guilds"
 import { Loader2 } from "lucide-react"
 import { createReview } from "@/actions/create-review"
+import { useRouter } from "next/navigation"
 
 export default function ReportForm({ servers }: { servers: IFetchGuilds }) {
+	const router = useRouter()
+
 	async function onSubmit(values: z.infer<typeof reportFormSchema>) {
 		const result = await createReview(values)
 		if (result?.error == true) {
@@ -36,6 +39,7 @@ export default function ReportForm({ servers }: { servers: IFetchGuilds }) {
 			return
 		}
 		form.reset()
+		router.push(`/server/${values.serverId}`)
 	}
 
 	const form = useForm<z.infer<typeof reportFormSchema>>({
