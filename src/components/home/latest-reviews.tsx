@@ -10,6 +10,8 @@ import {
 } from "../ui/card"
 import { Separator } from "../ui/separator"
 import { Rating, RatingButton } from "../ui/rating"
+import { Button } from "../ui/button"
+import Link from "next/link"
 
 export default async function LatestReviews() {
 	const reviews = await prisma.review.findMany({
@@ -51,8 +53,11 @@ export default async function LatestReviews() {
 							</p>
 						</CardContent>
 						<Separator />
-						<CardFooter>
+						<CardFooter className="justify-between">
 							<p>Autor opini: {review.user.name}</p>
+							<Link href={`/server/${review.serverId}`}>
+								<Button>Profil serwera</Button>
+							</Link>
 						</CardFooter>
 					</Card>
 				))}
