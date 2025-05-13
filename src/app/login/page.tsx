@@ -1,3 +1,4 @@
+"use client"
 import { SiteScaffold } from "@/components/shared/scaffold/site-scaffold"
 import { Button } from "@/components/ui/button"
 import {
