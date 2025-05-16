@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card"
-import { fetchServers } from "@/app/server/[slug]/page"
+import { fetchServers } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Fragment } from "react"
 import { Separator } from "../ui/separator"
