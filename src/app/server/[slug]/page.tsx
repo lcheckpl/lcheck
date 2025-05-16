@@ -11,16 +11,8 @@ import {
 } from "@/components/ui/card"
 import { Rating, RatingButton } from "@/components/ui/rating"
 import { prisma } from "@/lib/prisma"
+import { fetchServers } from "@/lib/utils"
 import { notFound } from "next/navigation"
-
-export function fetchServers(serverId: string) {
-	return prisma.review.findMany({
-		where: {
-			serverId: serverId,
-		},
-		include: { user: true },
-	})
-}
 
 export default async function ServerPage({
 	params,
