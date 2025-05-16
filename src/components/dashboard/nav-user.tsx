@@ -99,22 +99,22 @@ export function NavUser({
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
 								<Sparkles />
-								Upgrade to Pro
+								???
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
 						<DropdownMenuGroup>
 							<DropdownMenuItem>
 								<BadgeCheck />
-								Account
+								Konto(TODO)
 							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<CreditCard />
-								Billing
+								???
 							</DropdownMenuItem>
 							<DropdownMenuItem>
 								<Bell />
-								Notifications
+								Powiadomienia(TODO)
 							</DropdownMenuItem>
 						</DropdownMenuGroup>
 						<DropdownMenuSeparator />
