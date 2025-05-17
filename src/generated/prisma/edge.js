@@ -214,17 +214,18 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiOTk3MWFkYmMtZmQwNS00ZmUzLThkMGQtZWMwN2VkODk4MTQzIiwidGVuYW50X2lkIjoiZGNhNDYyZDIxOWNkMDc3MjUyODg0NzA2NmVhNGUzN2RhNzIwNTU1M2U3NTg3MzkxMmJkOGMxNWMwYzY1N2ZkNyIsImludGVybmFsX3NlY3JldCI6IjhkZTdkYWM2LWZiYWYtNDEyMi1iYTg5LTIzOTczN2E5ZGM2NiJ9.-08JchUcHAKh3wWVKZbnCoTE50jFRxaywTE2LQzQV-g"
+        "value": null
       }
     }
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             String    @id\n  name           String\n  email          String\n  emailVerified  Boolean\n  image          String?\n  createdAt      DateTime\n  updatedAt      DateTime\n  sessions       Session[]\n  accounts       Account[]\n  Review         Review[]\n  selectedServer String?\n\n  @@unique([email])\n  @@map(\"user\")\n}\n\nmodel Session {\n  id        String   @id\n  expiresAt DateTime\n  token     String\n  createdAt DateTime\n  updatedAt DateTime\n  ipAddress String?\n  userAgent String?\n  userId    String\n  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)\n\n  @@unique([token])\n  @@map(\"session\")\n}\n\nmodel Account {\n  id                    String    @id\n  accountId             String\n  providerId            String\n  userId                String\n  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  accessToken           String?\n  refreshToken          String?\n  idToken               String?\n  accessTokenExpiresAt  DateTime?\n  refreshTokenExpiresAt DateTime?\n  scope                 String?\n  password              String?\n  createdAt             DateTime\n  updatedAt             DateTime\n\n  @@map(\"account\")\n}\n\nmodel Verification {\n  id         String    @id\n  identifier String\n  value      String\n  expiresAt  DateTime\n  createdAt  DateTime?\n  updatedAt  DateTime?\n\n  @@map(\"verification\")\n}\n\nmodel Review {\n  id          String      @id @default(uuid())\n  user        User        @relation(fields: [userId], references: [id])\n  userId      String\n  server      ServerCache @relation(fields: [serverId], references: [id])\n  serverId    String\n  rating      Int\n  description String\n  createdAt   DateTime    @default(now())\n\n  @@unique([userId, serverId])\n}\n\nmodel ServerCache {\n  id     String   @id\n  name   String\n  icon   String\n  Review Review[]\n}\n",
   "inlineSchemaHash": "4e858568c1be41a98b885f41a7ca6026fd422c1148375d4bff4d818acd2a46ef",
-  "copyEngine": false
+  "copyEngine": true
 }
 config.dirname = '/'
 

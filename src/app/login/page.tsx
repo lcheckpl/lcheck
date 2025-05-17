@@ -9,8 +9,11 @@ import {
 	CardTitle,
 } from "@/components/ui/card"
 import { authClient } from "@/lib/auth-client"
+import { Loader2 } from "lucide-react"
+import { useState } from "react"
 
 export default function LoginPage() {
+	const [isPending, setIsPending] = useState(false)
 	return (
 		<SiteScaffold>
 			<div className="flex flex-row items-center justify-center">
@@ -24,14 +27,17 @@ export default function LoginPage() {
 					<CardContent>
 						<Button
 							onClick={() => {
+								setIsPending(true)
 								authClient.signIn.social({
 									provider: "discord",
 								})
 							}}
 							className="flex w-full items-center justify-center gap-2 bg-[#5865F2] text-white hover:bg-[#4752c4]"
+							disabled={isPending}
 						>
 							<DiscordIcon className="h-5 w-5" />
 							Zaloguj się przez Discord
+							{isPending && <Loader2 className="animate-spin" />}
 						</Button>
 					</CardContent>
 				</Card>
