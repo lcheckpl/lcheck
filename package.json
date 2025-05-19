@@ -31,7 +31,7 @@
 		"discord-permission": "^1.0.4",
 		"framer-motion": "^12.9.2",
 		"lucide-react": "^0.508.0",
-		"motion": "^12.10.0",
+		"motion": "^12.12.1",
 		"next": "15.3.1",
 		"polish-plurals": "^1.1.0",
 		"react": "^19.0.0",
