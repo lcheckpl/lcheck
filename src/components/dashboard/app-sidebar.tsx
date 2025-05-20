@@ -20,7 +20,7 @@ const data = {
 			title: "Opinie",
 			url: "#",
 			icon: Star,
-			isActive: true,
+			isActive: false,
 			items: [
 				{
 					title: "Przegląd",
