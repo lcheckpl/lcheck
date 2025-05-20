@@ -12,6 +12,7 @@ import {
 import { Rating, RatingButton } from "@/components/ui/rating"
 import { prisma } from "@/lib/prisma"
 import { fetchServers } from "@/lib/utils"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 export default async function ServerPage({
@@ -61,8 +62,12 @@ export default async function ServerPage({
 							({reviews.length})
 						</div>
 						<div className="flex flex-row gap-4">
-							<Button>Wystaw opinie</Button>
-							<Button variant="outline">Dołącz</Button>
+							<Link href="/report">
+								<Button>Wystaw opinie</Button>
+							</Link>
+							<Button variant="outline" disabled>
+								Dołącz
+							</Button>
 						</div>
 					</CardContent>
 				</Card>

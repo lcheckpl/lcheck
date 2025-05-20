@@ -79,12 +79,7 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 				url: "/blog",
 			},
 		],
-		mobileExtraLinks: [
-			{ name: "Press", url: "/press" },
-			{ name: "Contact", url: "/contact" },
-			{ name: "Imprint", url: "/imprint" },
-			{ name: "Sitemap", url: "/sitemap" },
-		],
+		mobileExtraLinks: [],
 		auth: {
 			login: { text: "Panel", url: "/dashboard" },
 			signup: { text: "Wystaw opinie", url: "/report" },
