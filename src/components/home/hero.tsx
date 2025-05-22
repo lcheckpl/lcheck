@@ -23,10 +23,10 @@ export default function HeroSection() {
 			</div>
 			<div>
 				<Image
-					src="placeholder.svg"
+					src="review.svg"
 					alt="Hero image"
-					width={1920}
-					height={1080}
+					width={2000}
+					height={1000}
 					className="aspect-video rounded-md"
 				/>
 			</div>
