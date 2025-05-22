@@ -32,14 +32,16 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 						description:
 							"Nasz serwer discord na którym możesz uzyskać pomoc",
 						icon: <DiscordIcon className="size-5 shrink-0" />,
-						url: "/discord",
+						url: "https://discord.gg/BfH8xFUVNR",
+						externalURL: true,
 					},
 					{
 						title: "Dołącz do nas",
 						description:
 							"Aktywnie szukamy ludzi, którzy są w stanie nam pomóc w prowadzeniu strony",
 						icon: <Handshake className="size-5 shrink-0" />,
-						url: "/careers",
+						url: "https://github.com/lcheckpl/lcheck",
+						externalURL: true,
 					},
 					{
 						title: "Blog",
