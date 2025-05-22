@@ -12,5 +12,6 @@ export function fetchServers(serverId: string) {
 			serverId: serverId,
 		},
 		include: { user: true },
+		orderBy: { createdAt: "desc" },
 	})
 }

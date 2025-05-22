@@ -12,6 +12,7 @@ import {
 import { Rating, RatingButton } from "@/components/ui/rating"
 import { prisma } from "@/lib/prisma"
 import { fetchServers } from "@/lib/utils"
+import Link from "next/link"
 import { notFound } from "next/navigation"
 
 export default async function ServerPage({
@@ -27,8 +28,11 @@ export default async function ServerPage({
 	}
 
 	const reviews = await fetchServers(server.id)
-	const avgReviews =
-		reviews.reduce((sum, r) => sum + r.rating, 0) / (reviews.length || 1)
+	const avgReviews = reviews.length
+		? Math.round(
+				reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,
+			)
+		: 0
 
 	return (
 		<SiteScaffold>
@@ -50,10 +54,7 @@ export default async function ServerPage({
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<div className="inline-flex gap-2 text-lg">
-							<Rating
-								value={Math.round(avgReviews || 0)}
-								readOnly
-							>
+							<Rating value={avgReviews} readOnly>
 								{Array.from({ length: 5 }).map((_, index) => (
 									<RatingButton key={index} />
 								))}
@@ -61,8 +62,12 @@ export default async function ServerPage({
 							({reviews.length})
 						</div>
 						<div className="flex flex-row gap-4">
-							<Button>Wystaw opinie</Button>
-							<Button variant="outline">Dołącz</Button>
+							<Link href="/report">
+								<Button>Wystaw opinie</Button>
+							</Link>
+							<Button variant="outline" disabled>
+								Dołącz
+							</Button>
 						</div>
 					</CardContent>
 				</Card>

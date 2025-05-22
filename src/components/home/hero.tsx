@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import Link from "next/link"
 export default function HeroSection() {
 	return (
 		<div className="flex flex-col items-center gap-24 lg:flex-row">
@@ -12,16 +13,20 @@ export default function HeroSection() {
 					Ci sprawdzić, czy dany serwer jest legitny i bezpieczny.
 				</p>
 				<div className="flex gap-4">
-					<Button>Sprawdź serwer</Button>
-					<Button variant="outline">Wystaw opinie</Button>
+					<Link href="/report">
+						<Button>Wystaw opinie</Button>
+					</Link>
+					<Link href="https://discord.gg/BfH8xFUVNR" target="_blank">
+						<Button variant="outline">Nasz serwer discord</Button>
+					</Link>
 				</div>
 			</div>
 			<div>
 				<Image
-					src="placeholder.svg"
+					src="review.svg"
 					alt="Hero image"
-					width={1920}
-					height={1080}
+					width={2000}
+					height={1000}
 					className="aspect-video rounded-md"
 				/>
 			</div>

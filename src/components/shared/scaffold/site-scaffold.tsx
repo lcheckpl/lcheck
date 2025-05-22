@@ -1,7 +1,7 @@
 import { DiscordIcon } from "@/components/ui/icons"
 import { Navbar1 } from "@/components/ui/navbar-top"
 import { Separator } from "@/components/ui/separator"
-import { Book, Trees, Zap, Star, Handshake } from "lucide-react"
+import { Handshake } from "lucide-react"
 import { ReactNode } from "react"
 
 export function SiteScaffold({ children }: { children: ReactNode }) {
@@ -13,78 +13,34 @@ export function SiteScaffold({ children }: { children: ReactNode }) {
 			title: "lcheck.pl",
 		},
 		menu: [
+			{ title: "Strona główna", url: "/" },
 			{
-				title: "Strona główna",
-				url: "/",
+				title: "Serwery",
+				url: "/servers",
 			},
 			{
 				title: "Społeczność",
 				url: "#",
 				items: [
 					{
-						title: "Opinie",
-						description: "Wszystkie opinie wystawione przez was",
-						icon: <Star className="size-5 shrink-0" />,
-						url: "/reviewsX",
-					},
-					{
 						title: "Discord",
 						description:
 							"Nasz serwer discord na którym możesz uzyskać pomoc",
 						icon: <DiscordIcon className="size-5 shrink-0" />,
-						url: "/discord",
+						url: "https://discord.gg/BfH8xFUVNR",
+						externalURL: true,
 					},
 					{
-						title: "Dołącz do nas",
-						description:
-							"Aktywnie szukamy ludzi, którzy są w stanie nam pomóc w prowadzeniu strony",
+						title: "GitHub",
+						description: "Nasze repozytorium na GitHubie",
 						icon: <Handshake className="size-5 shrink-0" />,
-						url: "/careers",
-					},
-					{
-						title: "Blog",
-						description:
-							"Regularnie wrzucamy tutaj informacje o aktualizacjach na stronie",
-						icon: <Book className="size-5 shrink-0" />,
-						url: "/blog",
+						url: "https://github.com/lcheckpl/lcheck",
+						externalURL: true,
 					},
 				],
 			},
-			{
-				title: "Zasoby",
-				url: "#",
-				items: [
-					{
-						title: "Centrum Pomocy",
-						description: "TODO bo nie mam pomysłu",
-						icon: <Zap className="size-5 shrink-0" />,
-						url: "/help",
-					},
-					{
-						title: "Status",
-						description: "Sprawdź status naszych systemów",
-						icon: <Trees className="size-5 shrink-0" />,
-						url: "/status",
-					},
-					{
-						title: "Regulamin i polityka prywatności",
-						description: "w sumie nie wiem czy to dodam wiec TODO",
-						icon: <Book className="size-5 shrink-0" />,
-						url: "/terms",
-					},
-				],
-			},
-			{
-				title: "Blog",
-				url: "/blog",
-			},
 		],
-		mobileExtraLinks: [
-			{ name: "Press", url: "/press" },
-			{ name: "Contact", url: "/contact" },
-			{ name: "Imprint", url: "/imprint" },
-			{ name: "Sitemap", url: "/sitemap" },
-		],
+		mobileExtraLinks: [],
 		auth: {
 			login: { text: "Panel", url: "/dashboard" },
 			signup: { text: "Wystaw opinie", url: "/report" },

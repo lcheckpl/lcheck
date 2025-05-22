@@ -31,6 +31,7 @@ interface MenuItem {
 	description?: string
 	icon?: JSX.Element
 	items?: MenuItem[]
+	externalURL?: boolean
 }
 
 interface Navbar1Props {
@@ -296,6 +297,7 @@ const renderMenuItem = (item: MenuItem) => {
 								<Link
 									className="hover:bg-muted hover:text-accent-foreground flex gap-4 rounded-md p-3 leading-none no-underline transition-colors outline-none select-none"
 									href={subItem.url}
+									target={subItem.externalURL ? "_blank" : ""}
 								>
 									{subItem.icon}
 									<div>
