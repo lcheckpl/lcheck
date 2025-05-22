@@ -28,8 +28,11 @@ export default async function ServerPage({
 	}
 
 	const reviews = await fetchServers(server.id)
-	const avgReviews =
-		reviews.reduce((sum, r) => sum + r.rating, 0) / (reviews.length || 1)
+	const avgReviews = reviews.length
+		? Math.round(
+				reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,
+			)
+		: 0
 
 	return (
 		<SiteScaffold>
@@ -51,10 +54,7 @@ export default async function ServerPage({
 					</CardHeader>
 					<CardContent className="space-y-4">
 						<div className="inline-flex gap-2 text-lg">
-							<Rating
-								value={Math.round(avgReviews || 0)}
-								readOnly
-							>
+							<Rating value={avgReviews} readOnly>
 								{Array.from({ length: 5 }).map((_, index) => (
 									<RatingButton key={index} />
 								))}
