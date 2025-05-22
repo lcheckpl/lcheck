@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent } from "../ui/card"
-import { fetchServers } from "@/lib/utils"
+import { fetchReviews } from "@/lib/utils"
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar"
 import { Fragment } from "react"
 import { Separator } from "../ui/separator"
@@ -8,7 +8,7 @@ import { Rating, RatingButton } from "../ui/rating"
 export default function ServerReviews({
 	reviews,
 }: {
-	reviews: Awaited<ReturnType<typeof fetchServers>>
+	reviews: Awaited<ReturnType<typeof fetchReviews>>
 }) {
 	return (
 		<Card>

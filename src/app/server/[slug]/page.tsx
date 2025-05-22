@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card"
 import { Rating, RatingButton } from "@/components/ui/rating"
 import { prisma } from "@/lib/prisma"
-import { fetchServers } from "@/lib/utils"
+import { fetchReviews } from "@/lib/utils"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -27,7 +27,7 @@ export default async function ServerPage({
 		notFound()
 	}
 
-	const reviews = await fetchServers(server.id)
+	const reviews = await fetchReviews(server.id)
 	const avgReviews = reviews.length
 		? Math.round(
 				reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length,

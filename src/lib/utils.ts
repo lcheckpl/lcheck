@@ -6,7 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
 }
 
-export function fetchServers(serverId: string) {
+export function fetchReviews(serverId: string) {
 	return prisma.review.findMany({
 		where: {
 			serverId: serverId,
