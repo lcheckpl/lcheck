@@ -43,7 +43,6 @@ export function NavMain({
 						asChild
 						defaultOpen={item.isActive}
 						className="group/collapsible"
-						disabled
 					>
 						<SidebarMenuItem>
 							<CollapsibleTrigger asChild>

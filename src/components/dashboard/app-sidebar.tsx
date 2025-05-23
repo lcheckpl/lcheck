@@ -18,21 +18,21 @@ const data = {
 	navMain: [
 		{
 			title: "Opinie",
-			url: "#",
+			url: "/dashboard/reviews",
 			icon: Star,
-			isActive: false,
+			isActive: true,
 			items: [
 				{
 					title: "Przegląd",
-					url: "#",
+					url: "/dashboard/reviews",
 				},
 				{
 					title: "Zarządzaj",
-					url: "#",
+					url: "/dashboard/reviews/manage",
 				},
 				{
 					title: "Logi",
-					url: "#",
+					url: "/dashboard/reviews/logs",
 				},
 			],
 		},
