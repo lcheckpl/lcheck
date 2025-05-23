@@ -9,7 +9,9 @@ import { fetchReviews } from "./actions"
 
 export default function DashboardReviewsPage() {
 	const { activeTeam } = useActiveTeam()
-	const [reviews, setReviews] = useState([])
+	const [reviews, setReviews] = useState<
+		Awaited<ReturnType<typeof fetchReviews>>
+	>([])
 
 	useEffect(() => {
 		if (activeTeam?.id) {
