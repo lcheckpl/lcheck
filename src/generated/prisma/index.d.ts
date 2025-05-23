@@ -43,6 +43,11 @@ export type Review = $Result.DefaultSelection<Prisma.$ReviewPayload>
  * 
  */
 export type ServerCache = $Result.DefaultSelection<Prisma.$ServerCachePayload>
+/**
+ * Model ServerSettings
+ * 
+ */
+export type ServerSettings = $Result.DefaultSelection<Prisma.$ServerSettingsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -228,6 +233,16 @@ export class PrismaClient<
     * ```
     */
   get serverCache(): Prisma.ServerCacheDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.serverSettings`: Exposes CRUD operations for the **ServerSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ServerSettings
+    * const serverSettings = await prisma.serverSettings.findMany()
+    * ```
+    */
+  get serverSettings(): Prisma.ServerSettingsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -286,8 +301,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.6.0
-   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -673,7 +688,8 @@ export namespace Prisma {
     Account: 'Account',
     Verification: 'Verification',
     Review: 'Review',
-    ServerCache: 'ServerCache'
+    ServerCache: 'ServerCache',
+    ServerSettings: 'ServerSettings'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -692,7 +708,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "session" | "account" | "verification" | "review" | "serverCache"
+      modelProps: "user" | "session" | "account" | "verification" | "review" | "serverCache" | "serverSettings"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1140,6 +1156,80 @@ export namespace Prisma {
           }
         }
       }
+      ServerSettings: {
+        payload: Prisma.$ServerSettingsPayload<ExtArgs>
+        fields: Prisma.ServerSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ServerSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ServerSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.ServerSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ServerSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.ServerSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.ServerSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.ServerSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ServerSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.ServerSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          update: {
+            args: Prisma.ServerSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ServerSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ServerSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ServerSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ServerSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ServerSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.ServerSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateServerSettings>
+          }
+          groupBy: {
+            args: Prisma.ServerSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ServerSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ServerSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<ServerSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1230,6 +1320,7 @@ export namespace Prisma {
     verification?: VerificationOmit
     review?: ReviewOmit
     serverCache?: ServerCacheOmit
+    serverSettings?: ServerSettingsOmit
   }
 
   /* Types for Logging */
@@ -1374,10 +1465,12 @@ export namespace Prisma {
 
   export type ServerCacheCountOutputType = {
     Review: number
+    ServerSettings: number
   }
 
   export type ServerCacheCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Review?: boolean | ServerCacheCountOutputTypeCountReviewArgs
+    ServerSettings?: boolean | ServerCacheCountOutputTypeCountServerSettingsArgs
   }
 
   // Custom InputTypes
@@ -1396,6 +1489,13 @@ export namespace Prisma {
    */
   export type ServerCacheCountOutputTypeCountReviewArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ReviewWhereInput
+  }
+
+  /**
+   * ServerCacheCountOutputType without action
+   */
+  export type ServerCacheCountOutputTypeCountServerSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServerSettingsWhereInput
   }
 
 
@@ -7097,6 +7197,7 @@ export namespace Prisma {
     name?: boolean
     icon?: boolean
     Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
+    ServerSettings?: boolean | ServerCache$ServerSettingsArgs<ExtArgs>
     _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serverCache"]>
 
@@ -7121,6 +7222,7 @@ export namespace Prisma {
   export type ServerCacheOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "icon", ExtArgs["result"]["serverCache"]>
   export type ServerCacheInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Review?: boolean | ServerCache$ReviewArgs<ExtArgs>
+    ServerSettings?: boolean | ServerCache$ServerSettingsArgs<ExtArgs>
     _count?: boolean | ServerCacheCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ServerCacheIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -7130,6 +7232,7 @@ export namespace Prisma {
     name: "ServerCache"
     objects: {
       Review: Prisma.$ReviewPayload<ExtArgs>[]
+      ServerSettings: Prisma.$ServerSettingsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -7530,6 +7633,7 @@ export namespace Prisma {
   export interface Prisma__ServerCacheClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     Review<T extends ServerCache$ReviewArgs<ExtArgs> = {}>(args?: Subset<T, ServerCache$ReviewArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ServerSettings<T extends ServerCache$ServerSettingsArgs<ExtArgs> = {}>(args?: Subset<T, ServerCache$ServerSettingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7974,6 +8078,30 @@ export namespace Prisma {
   }
 
   /**
+   * ServerCache.ServerSettings
+   */
+  export type ServerCache$ServerSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    where?: ServerSettingsWhereInput
+    orderBy?: ServerSettingsOrderByWithRelationInput | ServerSettingsOrderByWithRelationInput[]
+    cursor?: ServerSettingsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ServerSettingsScalarFieldEnum | ServerSettingsScalarFieldEnum[]
+  }
+
+  /**
    * ServerCache without action
    */
   export type ServerCacheDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7989,6 +8117,1038 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: ServerCacheInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ServerSettings
+   */
+
+  export type AggregateServerSettings = {
+    _count: ServerSettingsCountAggregateOutputType | null
+    _min: ServerSettingsMinAggregateOutputType | null
+    _max: ServerSettingsMaxAggregateOutputType | null
+  }
+
+  export type ServerSettingsMinAggregateOutputType = {
+    id: string | null
+    serverId: string | null
+    webhookUrl: string | null
+  }
+
+  export type ServerSettingsMaxAggregateOutputType = {
+    id: string | null
+    serverId: string | null
+    webhookUrl: string | null
+  }
+
+  export type ServerSettingsCountAggregateOutputType = {
+    id: number
+    serverId: number
+    webhookUrl: number
+    _all: number
+  }
+
+
+  export type ServerSettingsMinAggregateInputType = {
+    id?: true
+    serverId?: true
+    webhookUrl?: true
+  }
+
+  export type ServerSettingsMaxAggregateInputType = {
+    id?: true
+    serverId?: true
+    webhookUrl?: true
+  }
+
+  export type ServerSettingsCountAggregateInputType = {
+    id?: true
+    serverId?: true
+    webhookUrl?: true
+    _all?: true
+  }
+
+  export type ServerSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServerSettings to aggregate.
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerSettings to fetch.
+     */
+    orderBy?: ServerSettingsOrderByWithRelationInput | ServerSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ServerSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ServerSettings
+    **/
+    _count?: true | ServerSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ServerSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ServerSettingsMaxAggregateInputType
+  }
+
+  export type GetServerSettingsAggregateType<T extends ServerSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateServerSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateServerSettings[P]>
+      : GetScalarType<T[P], AggregateServerSettings[P]>
+  }
+
+
+
+
+  export type ServerSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ServerSettingsWhereInput
+    orderBy?: ServerSettingsOrderByWithAggregationInput | ServerSettingsOrderByWithAggregationInput[]
+    by: ServerSettingsScalarFieldEnum[] | ServerSettingsScalarFieldEnum
+    having?: ServerSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ServerSettingsCountAggregateInputType | true
+    _min?: ServerSettingsMinAggregateInputType
+    _max?: ServerSettingsMaxAggregateInputType
+  }
+
+  export type ServerSettingsGroupByOutputType = {
+    id: string
+    serverId: string
+    webhookUrl: string
+    _count: ServerSettingsCountAggregateOutputType | null
+    _min: ServerSettingsMinAggregateOutputType | null
+    _max: ServerSettingsMaxAggregateOutputType | null
+  }
+
+  type GetServerSettingsGroupByPayload<T extends ServerSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ServerSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ServerSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ServerSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], ServerSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ServerSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serverId?: boolean
+    webhookUrl?: boolean
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serverSettings"]>
+
+  export type ServerSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serverId?: boolean
+    webhookUrl?: boolean
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serverSettings"]>
+
+  export type ServerSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    serverId?: boolean
+    webhookUrl?: boolean
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["serverSettings"]>
+
+  export type ServerSettingsSelectScalar = {
+    id?: boolean
+    serverId?: boolean
+    webhookUrl?: boolean
+  }
+
+  export type ServerSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serverId" | "webhookUrl", ExtArgs["result"]["serverSettings"]>
+  export type ServerSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }
+  export type ServerSettingsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }
+  export type ServerSettingsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    server?: boolean | ServerCacheDefaultArgs<ExtArgs>
+  }
+
+  export type $ServerSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ServerSettings"
+    objects: {
+      server: Prisma.$ServerCachePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      serverId: string
+      webhookUrl: string
+    }, ExtArgs["result"]["serverSettings"]>
+    composites: {}
+  }
+
+  type ServerSettingsGetPayload<S extends boolean | null | undefined | ServerSettingsDefaultArgs> = $Result.GetResult<Prisma.$ServerSettingsPayload, S>
+
+  type ServerSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ServerSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ServerSettingsCountAggregateInputType | true
+    }
+
+  export interface ServerSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ServerSettings'], meta: { name: 'ServerSettings' } }
+    /**
+     * Find zero or one ServerSettings that matches the filter.
+     * @param {ServerSettingsFindUniqueArgs} args - Arguments to find a ServerSettings
+     * @example
+     * // Get one ServerSettings
+     * const serverSettings = await prisma.serverSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ServerSettingsFindUniqueArgs>(args: SelectSubset<T, ServerSettingsFindUniqueArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ServerSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ServerSettingsFindUniqueOrThrowArgs} args - Arguments to find a ServerSettings
+     * @example
+     * // Get one ServerSettings
+     * const serverSettings = await prisma.serverSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ServerSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, ServerSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServerSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsFindFirstArgs} args - Arguments to find a ServerSettings
+     * @example
+     * // Get one ServerSettings
+     * const serverSettings = await prisma.serverSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ServerSettingsFindFirstArgs>(args?: SelectSubset<T, ServerSettingsFindFirstArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ServerSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsFindFirstOrThrowArgs} args - Arguments to find a ServerSettings
+     * @example
+     * // Get one ServerSettings
+     * const serverSettings = await prisma.serverSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ServerSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, ServerSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ServerSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ServerSettings
+     * const serverSettings = await prisma.serverSettings.findMany()
+     * 
+     * // Get first 10 ServerSettings
+     * const serverSettings = await prisma.serverSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const serverSettingsWithIdOnly = await prisma.serverSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ServerSettingsFindManyArgs>(args?: SelectSubset<T, ServerSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ServerSettings.
+     * @param {ServerSettingsCreateArgs} args - Arguments to create a ServerSettings.
+     * @example
+     * // Create one ServerSettings
+     * const ServerSettings = await prisma.serverSettings.create({
+     *   data: {
+     *     // ... data to create a ServerSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends ServerSettingsCreateArgs>(args: SelectSubset<T, ServerSettingsCreateArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ServerSettings.
+     * @param {ServerSettingsCreateManyArgs} args - Arguments to create many ServerSettings.
+     * @example
+     * // Create many ServerSettings
+     * const serverSettings = await prisma.serverSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ServerSettingsCreateManyArgs>(args?: SelectSubset<T, ServerSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ServerSettings and returns the data saved in the database.
+     * @param {ServerSettingsCreateManyAndReturnArgs} args - Arguments to create many ServerSettings.
+     * @example
+     * // Create many ServerSettings
+     * const serverSettings = await prisma.serverSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ServerSettings and only return the `id`
+     * const serverSettingsWithIdOnly = await prisma.serverSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ServerSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, ServerSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a ServerSettings.
+     * @param {ServerSettingsDeleteArgs} args - Arguments to delete one ServerSettings.
+     * @example
+     * // Delete one ServerSettings
+     * const ServerSettings = await prisma.serverSettings.delete({
+     *   where: {
+     *     // ... filter to delete one ServerSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ServerSettingsDeleteArgs>(args: SelectSubset<T, ServerSettingsDeleteArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ServerSettings.
+     * @param {ServerSettingsUpdateArgs} args - Arguments to update one ServerSettings.
+     * @example
+     * // Update one ServerSettings
+     * const serverSettings = await prisma.serverSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ServerSettingsUpdateArgs>(args: SelectSubset<T, ServerSettingsUpdateArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ServerSettings.
+     * @param {ServerSettingsDeleteManyArgs} args - Arguments to filter ServerSettings to delete.
+     * @example
+     * // Delete a few ServerSettings
+     * const { count } = await prisma.serverSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ServerSettingsDeleteManyArgs>(args?: SelectSubset<T, ServerSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServerSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ServerSettings
+     * const serverSettings = await prisma.serverSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ServerSettingsUpdateManyArgs>(args: SelectSubset<T, ServerSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ServerSettings and returns the data updated in the database.
+     * @param {ServerSettingsUpdateManyAndReturnArgs} args - Arguments to update many ServerSettings.
+     * @example
+     * // Update many ServerSettings
+     * const serverSettings = await prisma.serverSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ServerSettings and only return the `id`
+     * const serverSettingsWithIdOnly = await prisma.serverSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ServerSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, ServerSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one ServerSettings.
+     * @param {ServerSettingsUpsertArgs} args - Arguments to update or create a ServerSettings.
+     * @example
+     * // Update or create a ServerSettings
+     * const serverSettings = await prisma.serverSettings.upsert({
+     *   create: {
+     *     // ... data to create a ServerSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ServerSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ServerSettingsUpsertArgs>(args: SelectSubset<T, ServerSettingsUpsertArgs<ExtArgs>>): Prisma__ServerSettingsClient<$Result.GetResult<Prisma.$ServerSettingsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ServerSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsCountArgs} args - Arguments to filter ServerSettings to count.
+     * @example
+     * // Count the number of ServerSettings
+     * const count = await prisma.serverSettings.count({
+     *   where: {
+     *     // ... the filter for the ServerSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends ServerSettingsCountArgs>(
+      args?: Subset<T, ServerSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ServerSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ServerSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ServerSettingsAggregateArgs>(args: Subset<T, ServerSettingsAggregateArgs>): Prisma.PrismaPromise<GetServerSettingsAggregateType<T>>
+
+    /**
+     * Group by ServerSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ServerSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ServerSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ServerSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: ServerSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ServerSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetServerSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ServerSettings model
+   */
+  readonly fields: ServerSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ServerSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ServerSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    server<T extends ServerCacheDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ServerCacheDefaultArgs<ExtArgs>>): Prisma__ServerCacheClient<$Result.GetResult<Prisma.$ServerCachePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ServerSettings model
+   */
+  interface ServerSettingsFieldRefs {
+    readonly id: FieldRef<"ServerSettings", 'String'>
+    readonly serverId: FieldRef<"ServerSettings", 'String'>
+    readonly webhookUrl: FieldRef<"ServerSettings", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ServerSettings findUnique
+   */
+  export type ServerSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerSettings to fetch.
+     */
+    where: ServerSettingsWhereUniqueInput
+  }
+
+  /**
+   * ServerSettings findUniqueOrThrow
+   */
+  export type ServerSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerSettings to fetch.
+     */
+    where: ServerSettingsWhereUniqueInput
+  }
+
+  /**
+   * ServerSettings findFirst
+   */
+  export type ServerSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerSettings to fetch.
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerSettings to fetch.
+     */
+    orderBy?: ServerSettingsOrderByWithRelationInput | ServerSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServerSettings.
+     */
+    cursor?: ServerSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServerSettings.
+     */
+    distinct?: ServerSettingsScalarFieldEnum | ServerSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ServerSettings findFirstOrThrow
+   */
+  export type ServerSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerSettings to fetch.
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerSettings to fetch.
+     */
+    orderBy?: ServerSettingsOrderByWithRelationInput | ServerSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ServerSettings.
+     */
+    cursor?: ServerSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ServerSettings.
+     */
+    distinct?: ServerSettingsScalarFieldEnum | ServerSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ServerSettings findMany
+   */
+  export type ServerSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ServerSettings to fetch.
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ServerSettings to fetch.
+     */
+    orderBy?: ServerSettingsOrderByWithRelationInput | ServerSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ServerSettings.
+     */
+    cursor?: ServerSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ServerSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ServerSettings.
+     */
+    skip?: number
+    distinct?: ServerSettingsScalarFieldEnum | ServerSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ServerSettings create
+   */
+  export type ServerSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ServerSettings.
+     */
+    data: XOR<ServerSettingsCreateInput, ServerSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * ServerSettings createMany
+   */
+  export type ServerSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ServerSettings.
+     */
+    data: ServerSettingsCreateManyInput | ServerSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ServerSettings createManyAndReturn
+   */
+  export type ServerSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many ServerSettings.
+     */
+    data: ServerSettingsCreateManyInput | ServerSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ServerSettings update
+   */
+  export type ServerSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ServerSettings.
+     */
+    data: XOR<ServerSettingsUpdateInput, ServerSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which ServerSettings to update.
+     */
+    where: ServerSettingsWhereUniqueInput
+  }
+
+  /**
+   * ServerSettings updateMany
+   */
+  export type ServerSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ServerSettings.
+     */
+    data: XOR<ServerSettingsUpdateManyMutationInput, ServerSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which ServerSettings to update
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * Limit how many ServerSettings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServerSettings updateManyAndReturn
+   */
+  export type ServerSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update ServerSettings.
+     */
+    data: XOR<ServerSettingsUpdateManyMutationInput, ServerSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which ServerSettings to update
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * Limit how many ServerSettings to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ServerSettings upsert
+   */
+  export type ServerSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ServerSettings to update in case it exists.
+     */
+    where: ServerSettingsWhereUniqueInput
+    /**
+     * In case the ServerSettings found by the `where` argument doesn't exist, create a new ServerSettings with this data.
+     */
+    create: XOR<ServerSettingsCreateInput, ServerSettingsUncheckedCreateInput>
+    /**
+     * In case the ServerSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ServerSettingsUpdateInput, ServerSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * ServerSettings delete
+   */
+  export type ServerSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
+    /**
+     * Filter which ServerSettings to delete.
+     */
+    where: ServerSettingsWhereUniqueInput
+  }
+
+  /**
+   * ServerSettings deleteMany
+   */
+  export type ServerSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ServerSettings to delete
+     */
+    where?: ServerSettingsWhereInput
+    /**
+     * Limit how many ServerSettings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ServerSettings without action
+   */
+  export type ServerSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ServerSettings
+     */
+    select?: ServerSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ServerSettings
+     */
+    omit?: ServerSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ServerSettingsInclude<ExtArgs> | null
   }
 
 
@@ -8084,6 +9244,15 @@ export namespace Prisma {
   };
 
   export type ServerCacheScalarFieldEnum = (typeof ServerCacheScalarFieldEnum)[keyof typeof ServerCacheScalarFieldEnum]
+
+
+  export const ServerSettingsScalarFieldEnum: {
+    id: 'id',
+    serverId: 'serverId',
+    webhookUrl: 'webhookUrl'
+  };
+
+  export type ServerSettingsScalarFieldEnum = (typeof ServerSettingsScalarFieldEnum)[keyof typeof ServerSettingsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8553,6 +9722,7 @@ export namespace Prisma {
     name?: StringFilter<"ServerCache"> | string
     icon?: StringFilter<"ServerCache"> | string
     Review?: ReviewListRelationFilter
+    ServerSettings?: ServerSettingsListRelationFilter
   }
 
   export type ServerCacheOrderByWithRelationInput = {
@@ -8560,6 +9730,7 @@ export namespace Prisma {
     name?: SortOrder
     icon?: SortOrder
     Review?: ReviewOrderByRelationAggregateInput
+    ServerSettings?: ServerSettingsOrderByRelationAggregateInput
   }
 
   export type ServerCacheWhereUniqueInput = Prisma.AtLeast<{
@@ -8570,6 +9741,7 @@ export namespace Prisma {
     name?: StringFilter<"ServerCache"> | string
     icon?: StringFilter<"ServerCache"> | string
     Review?: ReviewListRelationFilter
+    ServerSettings?: ServerSettingsListRelationFilter
   }, "id">
 
   export type ServerCacheOrderByWithAggregationInput = {
@@ -8588,6 +9760,51 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"ServerCache"> | string
     name?: StringWithAggregatesFilter<"ServerCache"> | string
     icon?: StringWithAggregatesFilter<"ServerCache"> | string
+  }
+
+  export type ServerSettingsWhereInput = {
+    AND?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
+    OR?: ServerSettingsWhereInput[]
+    NOT?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
+    id?: StringFilter<"ServerSettings"> | string
+    serverId?: StringFilter<"ServerSettings"> | string
+    webhookUrl?: StringFilter<"ServerSettings"> | string
+    server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
+  }
+
+  export type ServerSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    serverId?: SortOrder
+    webhookUrl?: SortOrder
+    server?: ServerCacheOrderByWithRelationInput
+  }
+
+  export type ServerSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
+    OR?: ServerSettingsWhereInput[]
+    NOT?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
+    serverId?: StringFilter<"ServerSettings"> | string
+    webhookUrl?: StringFilter<"ServerSettings"> | string
+    server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
+  }, "id">
+
+  export type ServerSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    serverId?: SortOrder
+    webhookUrl?: SortOrder
+    _count?: ServerSettingsCountOrderByAggregateInput
+    _max?: ServerSettingsMaxOrderByAggregateInput
+    _min?: ServerSettingsMinOrderByAggregateInput
+  }
+
+  export type ServerSettingsScalarWhereWithAggregatesInput = {
+    AND?: ServerSettingsScalarWhereWithAggregatesInput | ServerSettingsScalarWhereWithAggregatesInput[]
+    OR?: ServerSettingsScalarWhereWithAggregatesInput[]
+    NOT?: ServerSettingsScalarWhereWithAggregatesInput | ServerSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ServerSettings"> | string
+    serverId?: StringWithAggregatesFilter<"ServerSettings"> | string
+    webhookUrl?: StringWithAggregatesFilter<"ServerSettings"> | string
   }
 
   export type UserCreateInput = {
@@ -8995,6 +10212,7 @@ export namespace Prisma {
     name: string
     icon: string
     Review?: ReviewCreateNestedManyWithoutServerInput
+    ServerSettings?: ServerSettingsCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheUncheckedCreateInput = {
@@ -9002,6 +10220,7 @@ export namespace Prisma {
     name: string
     icon: string
     Review?: ReviewUncheckedCreateNestedManyWithoutServerInput
+    ServerSettings?: ServerSettingsUncheckedCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheUpdateInput = {
@@ -9009,6 +10228,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
     Review?: ReviewUpdateManyWithoutServerNestedInput
+    ServerSettings?: ServerSettingsUpdateManyWithoutServerNestedInput
   }
 
   export type ServerCacheUncheckedUpdateInput = {
@@ -9016,6 +10236,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
     Review?: ReviewUncheckedUpdateManyWithoutServerNestedInput
+    ServerSettings?: ServerSettingsUncheckedUpdateManyWithoutServerNestedInput
   }
 
   export type ServerCacheCreateManyInput = {
@@ -9034,6 +10255,47 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerSettingsCreateInput = {
+    id: string
+    webhookUrl: string
+    server: ServerCacheCreateNestedOneWithoutServerSettingsInput
+  }
+
+  export type ServerSettingsUncheckedCreateInput = {
+    id: string
+    serverId: string
+    webhookUrl: string
+  }
+
+  export type ServerSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
+    server?: ServerCacheUpdateOneRequiredWithoutServerSettingsNestedInput
+  }
+
+  export type ServerSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serverId?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerSettingsCreateManyInput = {
+    id: string
+    serverId: string
+    webhookUrl: string
+  }
+
+  export type ServerSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    serverId?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -9418,6 +10680,16 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type ServerSettingsListRelationFilter = {
+    every?: ServerSettingsWhereInput
+    some?: ServerSettingsWhereInput
+    none?: ServerSettingsWhereInput
+  }
+
+  export type ServerSettingsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type ServerCacheCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -9434,6 +10706,24 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     icon?: SortOrder
+  }
+
+  export type ServerSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    serverId?: SortOrder
+    webhookUrl?: SortOrder
+  }
+
+  export type ServerSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    serverId?: SortOrder
+    webhookUrl?: SortOrder
+  }
+
+  export type ServerSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    serverId?: SortOrder
+    webhookUrl?: SortOrder
   }
 
   export type SessionCreateNestedManyWithoutUserInput = {
@@ -9653,11 +10943,25 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+  export type ServerSettingsCreateNestedManyWithoutServerInput = {
+    create?: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput> | ServerSettingsCreateWithoutServerInput[] | ServerSettingsUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ServerSettingsCreateOrConnectWithoutServerInput | ServerSettingsCreateOrConnectWithoutServerInput[]
+    createMany?: ServerSettingsCreateManyServerInputEnvelope
+    connect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+  }
+
   export type ReviewUncheckedCreateNestedManyWithoutServerInput = {
     create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
     createMany?: ReviewCreateManyServerInputEnvelope
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
+  }
+
+  export type ServerSettingsUncheckedCreateNestedManyWithoutServerInput = {
+    create?: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput> | ServerSettingsCreateWithoutServerInput[] | ServerSettingsUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ServerSettingsCreateOrConnectWithoutServerInput | ServerSettingsCreateOrConnectWithoutServerInput[]
+    createMany?: ServerSettingsCreateManyServerInputEnvelope
+    connect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
   }
 
   export type ReviewUpdateManyWithoutServerNestedInput = {
@@ -9674,6 +10978,20 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
+  export type ServerSettingsUpdateManyWithoutServerNestedInput = {
+    create?: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput> | ServerSettingsCreateWithoutServerInput[] | ServerSettingsUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ServerSettingsCreateOrConnectWithoutServerInput | ServerSettingsCreateOrConnectWithoutServerInput[]
+    upsert?: ServerSettingsUpsertWithWhereUniqueWithoutServerInput | ServerSettingsUpsertWithWhereUniqueWithoutServerInput[]
+    createMany?: ServerSettingsCreateManyServerInputEnvelope
+    set?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    disconnect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    delete?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    connect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    update?: ServerSettingsUpdateWithWhereUniqueWithoutServerInput | ServerSettingsUpdateWithWhereUniqueWithoutServerInput[]
+    updateMany?: ServerSettingsUpdateManyWithWhereWithoutServerInput | ServerSettingsUpdateManyWithWhereWithoutServerInput[]
+    deleteMany?: ServerSettingsScalarWhereInput | ServerSettingsScalarWhereInput[]
+  }
+
   export type ReviewUncheckedUpdateManyWithoutServerNestedInput = {
     create?: XOR<ReviewCreateWithoutServerInput, ReviewUncheckedCreateWithoutServerInput> | ReviewCreateWithoutServerInput[] | ReviewUncheckedCreateWithoutServerInput[]
     connectOrCreate?: ReviewCreateOrConnectWithoutServerInput | ReviewCreateOrConnectWithoutServerInput[]
@@ -9686,6 +11004,34 @@ export namespace Prisma {
     update?: ReviewUpdateWithWhereUniqueWithoutServerInput | ReviewUpdateWithWhereUniqueWithoutServerInput[]
     updateMany?: ReviewUpdateManyWithWhereWithoutServerInput | ReviewUpdateManyWithWhereWithoutServerInput[]
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
+  }
+
+  export type ServerSettingsUncheckedUpdateManyWithoutServerNestedInput = {
+    create?: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput> | ServerSettingsCreateWithoutServerInput[] | ServerSettingsUncheckedCreateWithoutServerInput[]
+    connectOrCreate?: ServerSettingsCreateOrConnectWithoutServerInput | ServerSettingsCreateOrConnectWithoutServerInput[]
+    upsert?: ServerSettingsUpsertWithWhereUniqueWithoutServerInput | ServerSettingsUpsertWithWhereUniqueWithoutServerInput[]
+    createMany?: ServerSettingsCreateManyServerInputEnvelope
+    set?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    disconnect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    delete?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    connect?: ServerSettingsWhereUniqueInput | ServerSettingsWhereUniqueInput[]
+    update?: ServerSettingsUpdateWithWhereUniqueWithoutServerInput | ServerSettingsUpdateWithWhereUniqueWithoutServerInput[]
+    updateMany?: ServerSettingsUpdateManyWithWhereWithoutServerInput | ServerSettingsUpdateManyWithWhereWithoutServerInput[]
+    deleteMany?: ServerSettingsScalarWhereInput | ServerSettingsScalarWhereInput[]
+  }
+
+  export type ServerCacheCreateNestedOneWithoutServerSettingsInput = {
+    create?: XOR<ServerCacheCreateWithoutServerSettingsInput, ServerCacheUncheckedCreateWithoutServerSettingsInput>
+    connectOrCreate?: ServerCacheCreateOrConnectWithoutServerSettingsInput
+    connect?: ServerCacheWhereUniqueInput
+  }
+
+  export type ServerCacheUpdateOneRequiredWithoutServerSettingsNestedInput = {
+    create?: XOR<ServerCacheCreateWithoutServerSettingsInput, ServerCacheUncheckedCreateWithoutServerSettingsInput>
+    connectOrCreate?: ServerCacheCreateOrConnectWithoutServerSettingsInput
+    upsert?: ServerCacheUpsertWithoutServerSettingsInput
+    connect?: ServerCacheWhereUniqueInput
+    update?: XOR<XOR<ServerCacheUpdateToOneWithWhereWithoutServerSettingsInput, ServerCacheUpdateWithoutServerSettingsInput>, ServerCacheUncheckedUpdateWithoutServerSettingsInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -10222,12 +11568,14 @@ export namespace Prisma {
     id: string
     name: string
     icon: string
+    ServerSettings?: ServerSettingsCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheUncheckedCreateWithoutReviewInput = {
     id: string
     name: string
     icon: string
+    ServerSettings?: ServerSettingsUncheckedCreateNestedManyWithoutServerInput
   }
 
   export type ServerCacheCreateOrConnectWithoutReviewInput = {
@@ -10287,12 +11635,14 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
+    ServerSettings?: ServerSettingsUpdateManyWithoutServerNestedInput
   }
 
   export type ServerCacheUncheckedUpdateWithoutReviewInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     icon?: StringFieldUpdateOperationsInput | string
+    ServerSettings?: ServerSettingsUncheckedUpdateManyWithoutServerNestedInput
   }
 
   export type ReviewCreateWithoutServerInput = {
@@ -10321,6 +11671,26 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ServerSettingsCreateWithoutServerInput = {
+    id: string
+    webhookUrl: string
+  }
+
+  export type ServerSettingsUncheckedCreateWithoutServerInput = {
+    id: string
+    webhookUrl: string
+  }
+
+  export type ServerSettingsCreateOrConnectWithoutServerInput = {
+    where: ServerSettingsWhereUniqueInput
+    create: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput>
+  }
+
+  export type ServerSettingsCreateManyServerInputEnvelope = {
+    data: ServerSettingsCreateManyServerInput | ServerSettingsCreateManyServerInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ReviewUpsertWithWhereUniqueWithoutServerInput = {
     where: ReviewWhereUniqueInput
     update: XOR<ReviewUpdateWithoutServerInput, ReviewUncheckedUpdateWithoutServerInput>
@@ -10335,6 +11705,75 @@ export namespace Prisma {
   export type ReviewUpdateManyWithWhereWithoutServerInput = {
     where: ReviewScalarWhereInput
     data: XOR<ReviewUpdateManyMutationInput, ReviewUncheckedUpdateManyWithoutServerInput>
+  }
+
+  export type ServerSettingsUpsertWithWhereUniqueWithoutServerInput = {
+    where: ServerSettingsWhereUniqueInput
+    update: XOR<ServerSettingsUpdateWithoutServerInput, ServerSettingsUncheckedUpdateWithoutServerInput>
+    create: XOR<ServerSettingsCreateWithoutServerInput, ServerSettingsUncheckedCreateWithoutServerInput>
+  }
+
+  export type ServerSettingsUpdateWithWhereUniqueWithoutServerInput = {
+    where: ServerSettingsWhereUniqueInput
+    data: XOR<ServerSettingsUpdateWithoutServerInput, ServerSettingsUncheckedUpdateWithoutServerInput>
+  }
+
+  export type ServerSettingsUpdateManyWithWhereWithoutServerInput = {
+    where: ServerSettingsScalarWhereInput
+    data: XOR<ServerSettingsUpdateManyMutationInput, ServerSettingsUncheckedUpdateManyWithoutServerInput>
+  }
+
+  export type ServerSettingsScalarWhereInput = {
+    AND?: ServerSettingsScalarWhereInput | ServerSettingsScalarWhereInput[]
+    OR?: ServerSettingsScalarWhereInput[]
+    NOT?: ServerSettingsScalarWhereInput | ServerSettingsScalarWhereInput[]
+    id?: StringFilter<"ServerSettings"> | string
+    serverId?: StringFilter<"ServerSettings"> | string
+    webhookUrl?: StringFilter<"ServerSettings"> | string
+  }
+
+  export type ServerCacheCreateWithoutServerSettingsInput = {
+    id: string
+    name: string
+    icon: string
+    Review?: ReviewCreateNestedManyWithoutServerInput
+  }
+
+  export type ServerCacheUncheckedCreateWithoutServerSettingsInput = {
+    id: string
+    name: string
+    icon: string
+    Review?: ReviewUncheckedCreateNestedManyWithoutServerInput
+  }
+
+  export type ServerCacheCreateOrConnectWithoutServerSettingsInput = {
+    where: ServerCacheWhereUniqueInput
+    create: XOR<ServerCacheCreateWithoutServerSettingsInput, ServerCacheUncheckedCreateWithoutServerSettingsInput>
+  }
+
+  export type ServerCacheUpsertWithoutServerSettingsInput = {
+    update: XOR<ServerCacheUpdateWithoutServerSettingsInput, ServerCacheUncheckedUpdateWithoutServerSettingsInput>
+    create: XOR<ServerCacheCreateWithoutServerSettingsInput, ServerCacheUncheckedCreateWithoutServerSettingsInput>
+    where?: ServerCacheWhereInput
+  }
+
+  export type ServerCacheUpdateToOneWithWhereWithoutServerSettingsInput = {
+    where?: ServerCacheWhereInput
+    data: XOR<ServerCacheUpdateWithoutServerSettingsInput, ServerCacheUncheckedUpdateWithoutServerSettingsInput>
+  }
+
+  export type ServerCacheUpdateWithoutServerSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    Review?: ReviewUpdateManyWithoutServerNestedInput
+  }
+
+  export type ServerCacheUncheckedUpdateWithoutServerSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    icon?: StringFieldUpdateOperationsInput | string
+    Review?: ReviewUncheckedUpdateManyWithoutServerNestedInput
   }
 
   export type SessionCreateManyUserInput = {
@@ -10477,6 +11916,11 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ServerSettingsCreateManyServerInput = {
+    id: string
+    webhookUrl: string
+  }
+
   export type ReviewUpdateWithoutServerInput = {
     id?: StringFieldUpdateOperationsInput | string
     rating?: IntFieldUpdateOperationsInput | number
@@ -10499,6 +11943,21 @@ export namespace Prisma {
     rating?: IntFieldUpdateOperationsInput | number
     description?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ServerSettingsUpdateWithoutServerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerSettingsUncheckedUpdateWithoutServerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ServerSettingsUncheckedUpdateManyWithoutServerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
 

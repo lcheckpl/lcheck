@@ -90,8 +90,16 @@ model Review {
 }
 
 model ServerCache {
-  id     String   @id
-  name   String
-  icon   String
-  Review Review[]
+  id             String           @id
+  name           String
+  icon           String
+  Review         Review[]
+  ServerSettings ServerSettings[]
+}
+
+model ServerSettings {
+  id         String      @id
+  serverId   String
+  webhookUrl String
+  server     ServerCache @relation(fields: [serverId], references: [id])
 }
