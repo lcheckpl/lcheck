@@ -13,7 +13,12 @@ import { Fragment } from "react"
 export default function NavBreadcrumb() {
 	const path = usePathname().split("/")
 	path.shift()
-	const pathnames: Record<string, string> = { dashboard: "Panel" }
+	const pathnames: Record<string, string> = {
+		dashboard: "Panel",
+		reviews: "Opinie",
+		manage: "Zarządzanie",
+		logs: "Logi",
+	}
 
 	return (
 		<Breadcrumb>
@@ -23,7 +28,7 @@ export default function NavBreadcrumb() {
 						{array[index + 1] != null ? (
 							<>
 								<BreadcrumbItem className="hidden capitalize md:block">
-									<BreadcrumbLink href="#">
+									<BreadcrumbLink href={""}>
 										{pathnames[pathItem] || pathItem}
 									</BreadcrumbLink>
 								</BreadcrumbItem>
