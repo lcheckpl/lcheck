@@ -38,13 +38,13 @@ const data = {
 		},
 		{
 			title: "Webhook",
-			url: "#",
+			url: "/dashboard/webhook",
 			icon: SquareTerminal,
 
 			items: [
 				{
 					title: "Ustawienia",
-					url: "#",
+					url: "/dashboard/webhook",
 				},
 				{
 					title: "Statystyki",

@@ -3,6 +3,7 @@
 import { getSession } from "@/lib/auth"
 import { fetchGuilds } from "@/lib/fetch-guilds"
 import { prisma } from "@/lib/prisma"
+import { sendWebhook } from "@/lib/send-webhook"
 
 export async function getWebhook(serverId: string) {
 	const session = await getSession()
@@ -53,7 +54,7 @@ export async function setWebhook(serverId: string, webhookUrl: string) {
 	if (!session?.user) {
 		return {
 			error: true,
-			content: "",
+			content: "Unauthorized",
 		}
 	}
 	const guilds = await fetchGuilds()
@@ -61,7 +62,7 @@ export async function setWebhook(serverId: string, webhookUrl: string) {
 	if (guilds.status != 200) {
 		return {
 			error: true,
-			content: "",
+			content: "No permission",
 		}
 	}
 
@@ -69,7 +70,7 @@ export async function setWebhook(serverId: string, webhookUrl: string) {
 	if (!guild || !guild.admin) {
 		return {
 			error: true,
-			content: "",
+			content: "No permission",
 		}
 	}
 
@@ -86,8 +87,14 @@ export async function setWebhook(serverId: string, webhookUrl: string) {
 		},
 	})
 
+	const testResult = await sendWebhook(webhookUrl, {
+		type: "test",
+		serverId: serverId,
+		serverName: guild.name,
+	})
+
 	return {
-		error: false,
-		content: "",
+		error: testResult.error,
+		content: testResult.message,
 	}
 }

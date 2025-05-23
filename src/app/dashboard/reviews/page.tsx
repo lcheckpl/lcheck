@@ -5,7 +5,7 @@ import { ReviewList } from "@/components/dashboard/ReviewList"
 import { ReviewStats } from "@/components/dashboard/ReviewStats"
 import { useActiveTeam } from "@/contexts/teams-provider"
 import { useEffect, useState } from "react"
-import { fetchReviews } from "./actions"
+import { fetchReviews } from "@/actions/fetch-reviews"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export default function DashboardReviewsPage() {
