@@ -8132,19 +8132,16 @@ export namespace Prisma {
 
   export type ServerSettingsMinAggregateOutputType = {
     id: string | null
-    serverId: string | null
     webhookUrl: string | null
   }
 
   export type ServerSettingsMaxAggregateOutputType = {
     id: string | null
-    serverId: string | null
     webhookUrl: string | null
   }
 
   export type ServerSettingsCountAggregateOutputType = {
     id: number
-    serverId: number
     webhookUrl: number
     _all: number
   }
@@ -8152,19 +8149,16 @@ export namespace Prisma {
 
   export type ServerSettingsMinAggregateInputType = {
     id?: true
-    serverId?: true
     webhookUrl?: true
   }
 
   export type ServerSettingsMaxAggregateInputType = {
     id?: true
-    serverId?: true
     webhookUrl?: true
   }
 
   export type ServerSettingsCountAggregateInputType = {
     id?: true
-    serverId?: true
     webhookUrl?: true
     _all?: true
   }
@@ -8243,7 +8237,6 @@ export namespace Prisma {
 
   export type ServerSettingsGroupByOutputType = {
     id: string
-    serverId: string
     webhookUrl: string
     _count: ServerSettingsCountAggregateOutputType | null
     _min: ServerSettingsMinAggregateOutputType | null
@@ -8266,32 +8259,28 @@ export namespace Prisma {
 
   export type ServerSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serverId?: boolean
     webhookUrl?: boolean
     server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serverSettings"]>
 
   export type ServerSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serverId?: boolean
     webhookUrl?: boolean
     server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serverSettings"]>
 
   export type ServerSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    serverId?: boolean
     webhookUrl?: boolean
     server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["serverSettings"]>
 
   export type ServerSettingsSelectScalar = {
     id?: boolean
-    serverId?: boolean
     webhookUrl?: boolean
   }
 
-  export type ServerSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "serverId" | "webhookUrl", ExtArgs["result"]["serverSettings"]>
+  export type ServerSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "webhookUrl", ExtArgs["result"]["serverSettings"]>
   export type ServerSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     server?: boolean | ServerCacheDefaultArgs<ExtArgs>
   }
@@ -8309,7 +8298,6 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      serverId: string
       webhookUrl: string
     }, ExtArgs["result"]["serverSettings"]>
     composites: {}
@@ -8736,7 +8724,6 @@ export namespace Prisma {
    */
   interface ServerSettingsFieldRefs {
     readonly id: FieldRef<"ServerSettings", 'String'>
-    readonly serverId: FieldRef<"ServerSettings", 'String'>
     readonly webhookUrl: FieldRef<"ServerSettings", 'String'>
   }
     
@@ -9248,7 +9235,6 @@ export namespace Prisma {
 
   export const ServerSettingsScalarFieldEnum: {
     id: 'id',
-    serverId: 'serverId',
     webhookUrl: 'webhookUrl'
   };
 
@@ -9767,14 +9753,12 @@ export namespace Prisma {
     OR?: ServerSettingsWhereInput[]
     NOT?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
     id?: StringFilter<"ServerSettings"> | string
-    serverId?: StringFilter<"ServerSettings"> | string
     webhookUrl?: StringFilter<"ServerSettings"> | string
     server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }
 
   export type ServerSettingsOrderByWithRelationInput = {
     id?: SortOrder
-    serverId?: SortOrder
     webhookUrl?: SortOrder
     server?: ServerCacheOrderByWithRelationInput
   }
@@ -9784,14 +9768,12 @@ export namespace Prisma {
     AND?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
     OR?: ServerSettingsWhereInput[]
     NOT?: ServerSettingsWhereInput | ServerSettingsWhereInput[]
-    serverId?: StringFilter<"ServerSettings"> | string
     webhookUrl?: StringFilter<"ServerSettings"> | string
     server?: XOR<ServerCacheScalarRelationFilter, ServerCacheWhereInput>
   }, "id">
 
   export type ServerSettingsOrderByWithAggregationInput = {
     id?: SortOrder
-    serverId?: SortOrder
     webhookUrl?: SortOrder
     _count?: ServerSettingsCountOrderByAggregateInput
     _max?: ServerSettingsMaxOrderByAggregateInput
@@ -9803,7 +9785,6 @@ export namespace Prisma {
     OR?: ServerSettingsScalarWhereWithAggregatesInput[]
     NOT?: ServerSettingsScalarWhereWithAggregatesInput | ServerSettingsScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"ServerSettings"> | string
-    serverId?: StringWithAggregatesFilter<"ServerSettings"> | string
     webhookUrl?: StringWithAggregatesFilter<"ServerSettings"> | string
   }
 
@@ -10258,43 +10239,36 @@ export namespace Prisma {
   }
 
   export type ServerSettingsCreateInput = {
-    id: string
     webhookUrl: string
     server: ServerCacheCreateNestedOneWithoutServerSettingsInput
   }
 
   export type ServerSettingsUncheckedCreateInput = {
     id: string
-    serverId: string
     webhookUrl: string
   }
 
   export type ServerSettingsUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
     server?: ServerCacheUpdateOneRequiredWithoutServerSettingsNestedInput
   }
 
   export type ServerSettingsUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServerSettingsCreateManyInput = {
     id: string
-    serverId: string
     webhookUrl: string
   }
 
   export type ServerSettingsUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServerSettingsUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    serverId?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10710,19 +10684,16 @@ export namespace Prisma {
 
   export type ServerSettingsCountOrderByAggregateInput = {
     id?: SortOrder
-    serverId?: SortOrder
     webhookUrl?: SortOrder
   }
 
   export type ServerSettingsMaxOrderByAggregateInput = {
     id?: SortOrder
-    serverId?: SortOrder
     webhookUrl?: SortOrder
   }
 
   export type ServerSettingsMinOrderByAggregateInput = {
     id?: SortOrder
-    serverId?: SortOrder
     webhookUrl?: SortOrder
   }
 
@@ -11672,12 +11643,10 @@ export namespace Prisma {
   }
 
   export type ServerSettingsCreateWithoutServerInput = {
-    id: string
     webhookUrl: string
   }
 
   export type ServerSettingsUncheckedCreateWithoutServerInput = {
-    id: string
     webhookUrl: string
   }
 
@@ -11728,7 +11697,6 @@ export namespace Prisma {
     OR?: ServerSettingsScalarWhereInput[]
     NOT?: ServerSettingsScalarWhereInput | ServerSettingsScalarWhereInput[]
     id?: StringFilter<"ServerSettings"> | string
-    serverId?: StringFilter<"ServerSettings"> | string
     webhookUrl?: StringFilter<"ServerSettings"> | string
   }
 
@@ -11917,7 +11885,6 @@ export namespace Prisma {
   }
 
   export type ServerSettingsCreateManyServerInput = {
-    id: string
     webhookUrl: string
   }
 
@@ -11946,17 +11913,14 @@ export namespace Prisma {
   }
 
   export type ServerSettingsUpdateWithoutServerInput = {
-    id?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServerSettingsUncheckedUpdateWithoutServerInput = {
-    id?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 
   export type ServerSettingsUncheckedUpdateManyWithoutServerInput = {
-    id?: StringFieldUpdateOperationsInput | string
     webhookUrl?: StringFieldUpdateOperationsInput | string
   }
 

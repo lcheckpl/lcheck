@@ -184,7 +184,6 @@ exports.Prisma.ServerCacheScalarFieldEnum = {
 
 exports.Prisma.ServerSettingsScalarFieldEnum = {
   id: 'id',
-  serverId: 'serverId',
   webhookUrl: 'webhookUrl'
 };
 

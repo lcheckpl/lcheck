@@ -99,7 +99,6 @@ model ServerCache {
 
 model ServerSettings {
   id         String      @id
-  serverId   String
   webhookUrl String
-  server     ServerCache @relation(fields: [serverId], references: [id])
+  server     ServerCache @relation(fields: [id], references: [id])
 }
